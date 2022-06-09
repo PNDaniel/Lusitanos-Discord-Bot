@@ -27,6 +27,7 @@
   "homepage": "",
   "dependencies": {
     "discord.js": "^12.5.1",
-    "discord-button-pages":"^1.1.9"
+    "discord-button-pages":"^1.1.9",
+    "discord-buttons":"^4.0.0-deprecated"
   }
 }
