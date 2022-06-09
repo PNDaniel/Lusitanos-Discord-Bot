@@ -2,6 +2,8 @@
 const Discord = require('discord.js');
 
 const client = new Discord.Client();
+const slash = require('discord-slash-commands-v12');
+slash(client);
 
 client.interaction = {}; //Creating interaction object
 const DiscordButtons = require('discord-buttons-v13'); //Requiring Discord-BUttons module.
