@@ -10,7 +10,7 @@ DiscordButtons(client);
 
 
 client.on('ready', () => {
-console.log("Ready")
+  console.log(`Logged in as ${client.user.tag}!`);
 });
 
 client.on('clickButton', (button) => {
@@ -38,7 +38,7 @@ client.on('message', msg => {
         .setColor('BLUE');
     
     const embedPages = [embed1, embed2, embed3];
-    ButtonPages.createPages(client.interaction, msg, embedPages, 60 * 1000, "red", "👉", "👈", "❌");
+    ButtonPages.createPages(client.interaction, msg, embedPages, 60 * 1000, "red", "Próximo", "Anterior", "Apagar");
   }
     
 });
