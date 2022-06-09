@@ -28,6 +28,7 @@
   "dependencies": {
     "discord.js": "^12.5.1",
     "discord-button-pages":"^1.1.9",
-    "discord-buttons-v13":"^4.0.2"
+    "discord-buttons-v13":"^4.0.2",
+    "discord-slash-commands-v12" : "3.1.8"
   }
 }
