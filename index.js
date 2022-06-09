@@ -21,21 +21,20 @@ client.on('clickButton', (button) => {
 client.on('message', msg => {
     if(msg.content === "!ping")
         return msg.channel.send("Pong ");
-    if(msg.content === "!map")
-       return msg.channel.send("North Fort", {files: ["https://static.wixstatic.com/media/ef5476_e993053f63aa4a7dbd0cc11be2f455bf~mv2.png/v1/fill/w_870,h_863,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20North%20Fort.png"]});
-
-    if (msg.content === '!test') {
+    if (msg.content === '!Map-turul') {
     const embed1 = new Discord.MessageEmbed()
         .setTitle('North Fort')
-        .setThumbnail('https://static.wixstatic.com/media/ef5476_e993053f63aa4a7dbd0cc11be2f455bf~mv2.png/v1/fill/w_870,h_863,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20North%20Fort.png')
-        .setColor('RED');
+        .setImage('https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png')
+        .setColor('BLUE');
         
     const embed2 = new Discord.MessageEmbed()
         .setTitle('South Fort')
-        .setColor('YELLOW');
+    .setImage('https://static.wixstatic.com/media/ef5476_b14d489b0ef24761b19ebeb375ba7dc8~mv2.png/v1/fill/w_870,h_864,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Valley%20Fortress.png')
+        .setColor('BLUE');
         
     const embed3 = new Discord.MessageEmbed()
         .setTitle('Embed #3')
+    .setImage('https://static.wixstatic.com/media/ef5476_faf687624cb14fcfbb07efccf422a133~mv2.png/v1/fill/w_829,h_824,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Village%203.png')
         .setColor('BLUE');
     
     const embedPages = [embed1, embed2, embed3];
