@@ -9,6 +9,11 @@ console.log("Ready")
 client.on('message', msg => {
     if(msg.content === "!ping")
         return msg.channel.send("Pong ");
+    if(msg.content === "!map")
+        message.channel.send({ files: [{ attachment: 'map.png' }] });
 });
+
+
+
 
 client.login("OTg0NTcwODI2MjA2NjIxNzI3.GqSxX1.tyc-Gp6zXIulYdWlGFfo6W2e05WJM2Jcq6wn_8");
