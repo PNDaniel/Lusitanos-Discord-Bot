@@ -1,5 +1,5 @@
 {
-  "name": "discord.js-heroku",
+  "name": "discord.lusitanos-discord-bot",
   "version": "1.0.0",
   "description": "An in-depth guide on deploying your Discord.js bot on Heroku",
   "main": "index.js",
