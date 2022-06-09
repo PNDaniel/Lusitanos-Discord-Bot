@@ -1,11 +1,12 @@
 const discord = require("discord.js")
-const client = new discord.Client()
+const client = new Discord.Client()
 
-client.on("ready", () => {
+client.on("ready", async bot => {
+  bot.user.setActivity("Test");
 console.log("I am ready.");
 });
 
-client.on("message", message=>
+client.on("message", async  message=>
 {
 if(message.content === "!ping"){
 return message.channel.send("Pong " + client.ws.ping);}
