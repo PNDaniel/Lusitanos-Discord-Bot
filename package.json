@@ -26,6 +26,6 @@
   },
   "homepage": "",
   "dependencies": {
-    "discord.js": "^13.8.0"
+    "discord.js": "^12.5.1"
   }
 }
