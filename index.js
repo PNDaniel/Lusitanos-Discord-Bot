@@ -4,7 +4,7 @@ const Discord = require('discord.js');
 const client = new Discord.Client();
 
 client.interaction = {}; //Creating interaction object
-const DiscordButtons = require('discord-buttons'); //Requiring Discord-BUttons module.
+const DiscordButtons = require('discord-buttons-v13'); //Requiring Discord-BUttons module.
 const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-Pages module.
 DiscordButtons(client);
 
@@ -27,18 +27,21 @@ client.on('message', msg => {
     if (msg.content === '!test') {
     const embed1 = new Discord.MessageEmbed()
         .setTitle('Embed #1')
+    .setEmoji("905702018902011955>")
         .setColor('RED');
         
     const embed2 = new Discord.MessageEmbed()
         .setTitle('Embed #2')
+    .setEmoji("905702018902011955>")
         .setColor('YELLOW');
         
     const embed3 = new Discord.MessageEmbed()
         .setTitle('Embed #3')
+    .setEmoji("905702018902011955>")
         .setColor('BLUE');
     
     const embedPages = [embed1, embed2, embed3];
-    ButtonPages.createPages(client.interaction, msg, embedPages, 60 * 1000, "red", ":arrow_left: ", ":arrow_right:", ":regional_indicator_x:");
+    ButtonPages.createPages(client.interaction, msg, embedPages, 60 * 1000, "red", "Próximo ", "Anterior", "Apagar");
   }
     
 });
