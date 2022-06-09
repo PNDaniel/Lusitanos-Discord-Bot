@@ -10,7 +10,8 @@ client.on('message', msg => {
     if(msg.content === "!ping")
         return msg.channel.send("Pong ");
     if(msg.content === "!map")
-        message.channel.send({ files: [{ attachment: 'northfort.png' }] });
+        msg.channel.send("North Fort", {files: ["https://static.wixstatic.com/media/ef5476_e993053f63aa4a7dbd0cc11be2f455bf~mv2.png/v1/fill/w_870,h_863,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20North%20Fort.png"]});
+
 });
 
 
