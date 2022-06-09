@@ -26,11 +26,12 @@ client.on('message', msg => {
 
     if (msg.content === '!test') {
     const embed1 = new Discord.MessageEmbed()
-        .setTitle('Embed #1')
+        .setTitle('North Fort')
+        .setThumbnail('https://static.wixstatic.com/media/ef5476_e993053f63aa4a7dbd0cc11be2f455bf~mv2.png/v1/fill/w_870,h_863,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20North%20Fort.png')
         .setColor('RED');
         
     const embed2 = new Discord.MessageEmbed()
-        .setTitle('Embed #2')
+        .setTitle('South Fort')
         .setColor('YELLOW');
         
     const embed3 = new Discord.MessageEmbed()
