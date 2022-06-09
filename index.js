@@ -38,7 +38,7 @@ client.on('message', msg => {
         .setColor('BLUE');
     
     const embedPages = [embed1, embed2, embed3];
-    ButtonPages.createPages(client.interaction, msg, embedPages, 60 * 1000, "blue", "▶ ", "◀", "❌");
+    ButtonPages.createPages(client.interaction, msg, embedPages, 60 * 1000, "blurple", "▶ ", "◀", "❌");
   }
     
 });
