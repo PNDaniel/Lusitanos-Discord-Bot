@@ -27,21 +27,18 @@ client.on('message', msg => {
     if (msg.content === '!test') {
     const embed1 = new Discord.MessageEmbed()
         .setTitle('Embed #1')
-    .setEmoji("905702018902011955>")
         .setColor('RED');
         
     const embed2 = new Discord.MessageEmbed()
         .setTitle('Embed #2')
-    .setEmoji("905702018902011955>")
         .setColor('YELLOW');
         
     const embed3 = new Discord.MessageEmbed()
         .setTitle('Embed #3')
-    .setEmoji("905702018902011955>")
         .setColor('BLUE');
     
     const embedPages = [embed1, embed2, embed3];
-    ButtonPages.createPages(client.interaction, msg, embedPages, 60 * 1000, "red", "Próximo ", "Anterior", "Apagar");
+    ButtonPages.createPages(client.interaction, msg, embedPages, 60 * 1000, "blue", "▶ ", "◀", "❌");
   }
     
 });
