@@ -47,6 +47,19 @@ client.on('message', msg => {
 });
 
 
+slash(client);
+const ping = {
+	name: 'ping',
+	description: 'pong!'
+};
+client.commands.create(ping);
+
+client.on('command', data => {
+	if (data.commandName === 'ping') {
+		data.reply.send('pong!');
+	};
+});
+
 
 
 client.login("OTg0NTcwODI2MjA2NjIxNzI3.GqSxX1.tyc-Gp6zXIulYdWlGFfo6W2e05WJM2Jcq6wn_8");
