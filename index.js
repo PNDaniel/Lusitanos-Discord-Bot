@@ -7,11 +7,8 @@ client.on('ready', () => {
 });
 
 client.on('message', msg => {
-    if (!msg.content.startsWith(process.env.PREFIX) || !msg.guild) return;
-    const command = msg.content.split(' ')[0].substr(process.env.PREFIX.length);
-    const args = msg.content.split(' ').slice(1).join(' ');
-    if (command === 'guide') return msg.channel.send('https://git.io/d.js-heroku');
-    else if (command === 'invite') return msg.channel.send(process.env.INVITE);
+    if(message.content === "!ping")
+        return message.channel.send("Pong " + client.ws.ping);
 });
 
-client.login(process.env.TOKEN);
+client.login("OTg0NTcwODI2MjA2NjIxNzI3.GqSxX1.tyc-Gp6zXIulYdWlGFfo6W2e05WJM2Jcq6wn_8");
