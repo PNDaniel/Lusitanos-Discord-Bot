@@ -3,8 +3,7 @@ const Discord = require('discord.js');
 
 const { MessageActionRow, MessageButton } = require('discord.js');
 const client = new Discord.Client();
-const disbut = require('discord-buttons');
-disbut(client);
+
 
 client.on('ready', () => {
 console.log("Ready")
