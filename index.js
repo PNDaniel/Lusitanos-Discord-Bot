@@ -27,9 +27,11 @@ client.on('message', msg => {
       //      msg.channel.send("Ruda, Sovica, Csorna, Délrétek, Tavasz, Bejárat, Kistemplom, Vaseke", {files: ["https://static.wixstatic.com/media/ef5476_faf687624cb14fcfbb07efccf422a133~mv2.png/v1/fill/w_829,h_824,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Village%203.png"]});
 	//  if(TWCity1.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(msg.content.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "")))
      //   msg.channel.send(msg.content.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), {files: ["https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png"]});
-	//	
+	//	.normalize("NFD").replace(/\p{Diacritic}/gu, "")
    
-
+	if(TWCity1.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")))
+	   msg.channel.send(msg.content.normalize("NFD").replace(/\p{Diacritic}/gu, ""), {files: ["https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png"]});
+   	
     if(msg.content === "!maps"){
     const embed1 = new Discord.MessageEmbed()
         .setTitle('Ungverija')
