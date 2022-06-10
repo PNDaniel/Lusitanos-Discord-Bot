@@ -1,19 +1,12 @@
-// Discord.js bot
 const Discord = require('discord.js');
-
 const client = new Discord.Client();
-
-client.interaction = {}; //Creating interaction object
-const DiscordButtons = require('discord-buttons-v13'); //Requiring Discord-BUttons module.
-const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-Pages module.
-DiscordButtons(client);
+const { MessageActionRow, MessageButton } = require('discord.js');
 
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-const { MessageActionRow, MessageButton } = require('discord.js');
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
