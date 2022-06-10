@@ -29,9 +29,9 @@ client.on('message', msg => {
    
 
     if(msg.content.includes("!")){
-		if(TWCity1.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(msg.content.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))){
-        msg.channel.send(msg.content.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), {files: ["https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png"]});
-		}
+	//	if(TWCity1.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, "").includes(msg.content.toLowerCase().normalize("NFD").replace(/[\u0300-\u036f]/g, ""))){
+     //   msg.channel.send(msg.content.normalize("NFD").replace(/[\u0300-\u036f]/g, ""), {files: ["https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png"]});
+	//	}
     const embed2 = new Discord.MessageEmbed()
        .setTitle('Ungverija')
        .setImage('https://static.wixstatic.com/media/ef5476_b14d489b0ef24761b19ebeb375ba7dc8~mv2.png/v1/fill/w_870,h_864,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Valley%20Fortress.png')
