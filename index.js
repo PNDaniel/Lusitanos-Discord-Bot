@@ -16,16 +16,17 @@ client.on('ready', () => {
 client.on('clickButton', (button) => {
   ButtonPages.buttonInteractions(button, client.interaction);
 });
+// private message:  msg.author.send("Your message here.")
 
 const TWCity1 = ["kiralvfalva", "gyoma", "mehkerek", "hadur varus", "ovarus", "horka", "heviz", "feheloval", "rozsdaskaszat", "hosvarosa"," kisber", "tura", "hatvan"]
 const TWValleyFortress = ['vaja', 'ratot var']
 const TWVillage3 = ['ruda', 'sovica', 'csorna',' delretek', 'tavasz', 'bejarat', 'kistemplom', 'vaseke']
 
 client.on('message', msg => {
-
+	if(message.author.guild_permissions.administrator){
 	if(TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")){
 	   msg.delete();
-	   msg.author.send("Your message here.")
+	  
 	   msg.channel.send({files: ["https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png"]});
 	}
    	
@@ -53,7 +54,7 @@ client.on('message', msg => {
 		msg.delete();
 		msg.channel.send("Ruda\nSovica\nCsorna\nDélrétek\nTavasz\nBejárat\nKistemplom\nVaseke")
 	 }
-
+	}
 
 });
   
