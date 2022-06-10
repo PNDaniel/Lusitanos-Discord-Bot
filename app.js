@@ -1,7 +1,6 @@
 const { Client, APIMessage } = require("discord.js");
 const { readdirSync } = require("fs");
 const Bot = new Client();
-const Config = require("./config");
 const Commands = [];
 const cmdFiles = readdirSync("./commands").filter((file) =>
 	file.endsWith(".js"),
@@ -30,7 +29,7 @@ Bot.ws.on("INTERACTION_CREATE", (interaction) => {
 		CMDFile.execute(Bot, say, interaction, interaction.data.options);
 });
 
-Bot.login(Config.token);
+Bot.login(process.env.TOKEN);
 
 async function say(interaction, content) {
 	return Bot.api
