@@ -1,19 +1,13 @@
 
-const {Client, Intents , MessageActionRow, MessageButton } = require('discord.js');
+const { Client, Intents } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
+const { MessageActionRow, MessageButton } = require('discord.js');
 
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-const row = new MessageActionRow()
-.addComponents(
-   new MessageButton()
-      .setCustomId('primary')
-      .setLabel('Primary')
-      .setStyle('PRIMARY'),
-);
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
@@ -31,23 +25,19 @@ client.on('interactionCreate', async interaction => {
 	}
 });
 
-  
+client.on('message', msg => {
+   if (msg.content === '!ping') {
+      const row = new MessageActionRow()
+      .addComponents(
+         new MessageButton()
+            .setCustomId('primary')
+            .setLabel('Primary')
+            .setStyle('PRIMARY'),
+      );
 
-client.login(process.env.TOKEN);
+   await interaction.reply({ content: 'Pong!', components: [row] });
 
-
-
-
-
-
-
-
-
-
-
-
-
-//client.on('message', msg => {
+   }
   
    //   if (msg.content === '!Map-turul') {
     //        msg.channel.send("Kiralvfalva, Gyoma, Méhkerék, Hadur Várus, Óvárus, Horka, Hévíz, Feheloval, Rozsdáskaszát, Hosvarosa, Kisbér, Tura, Hatvan", {files: ["https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png"]});
@@ -79,5 +69,8 @@ client.login(process.env.TOKEN);
   ButtonPages.createPages(client.interaction, msg, embedPages, 60 * 100 , "green", "👉", "👈");  
     }
 
+*/
+});
+  
 
-});*/
+client.login(process.env.TOKEN);
