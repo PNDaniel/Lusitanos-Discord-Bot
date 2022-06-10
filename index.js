@@ -38,17 +38,17 @@ client.on('message', msg => {
 	   msg.channel.send({files: ["https://static.wixstatic.com/media/ef5476_faf687624cb14fcfbb07efccf422a133~mv2.png/v1/fill/w_829,h_824,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Village%203.png"]});
 	}
 
-	if(TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/equals_", "")) && msg.content.includes("/equals_")){
+	if(TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/=")){
 	   msg.delete();
 	   msg.channel.send("Kiralvfalva", "Gyoma","Méhkerék","Hadur Várus", "Óvárus", "Horka", "Hévíz", "Feheloval", "Rozsdáskaszát", "Hosvarosa", "Kisbér", "Tura", "Hatvan")
 	}
 
-	if(TWValleyFortress.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/equals_", "")) && msg.content.includes("/equals_")){
+	if(TWValleyFortress.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/=")){
 		msg.delete();
 		msg.channel.send("Kiralvfalva", "Gyoma","Méhkerék","Hadur Várus", "Óvárus", "Horka", "Hévíz", "Feheloval", "Rozsdáskaszát", "Hosvarosa", "Kisbér", "Tura", "Hatvan")
 	 }
 
-	 if(TWVillage3.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/equals_", "")) && msg.content.includes("/equals_")){
+	 if(TWVillage3.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/=")){
 		msg.delete();
 		msg.channel.send("Ruda", "Sovica", "Csorna", "Délrétek", "Tavasz", "Bejárat", "Kistemplom", "Vaseke")
 	 }
