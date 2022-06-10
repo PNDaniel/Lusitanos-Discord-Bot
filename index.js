@@ -40,17 +40,17 @@ client.on('message', msg => {
 
 	if(TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/=")){
 	   msg.delete();
-	   msg.channel.send("Kiralvfalva", "Gyoma","Méhkerék","Hadur Várus", "Óvárus", "Horka", "Hévíz", "Feheloval", "Rozsdáskaszát", "Hosvarosa", "Kisbér", "Tura", "Hatvan")
+	   msg.channel.send("Kiralvfalva\n Gyoma\n Méhkerék\n Hadur Várus\n Óvárus\n Horka\n Hévíz \nFeheloval\n Rozsdáskaszát\n Hosvarosa\n Kisbér\n Tura\n Hatvan")
 	}
 
 	if(TWValleyFortress.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/=")){
 		msg.delete();
-		msg.channel.send("Kiralvfalva", "Gyoma","Méhkerék","Hadur Várus", "Óvárus", "Horka", "Hévíz", "Feheloval", "Rozsdáskaszát", "Hosvarosa", "Kisbér", "Tura", "Hatvan")
+		msg.channel.send("Vaja \n Ratót Var")
 	 }
 
 	 if(TWVillage3.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/=")){
 		msg.delete();
-		msg.channel.send("Ruda", "Sovica", "Csorna", "Délrétek", "Tavasz", "Bejárat", "Kistemplom", "Vaseke")
+		msg.channel.send("Ruda\nSovica\nCsorna\nDélrétek\nTavasz\nBejárat\nKistemplom\nVaseke")
 	 }
 
 
