@@ -1,57 +1,78 @@
-// Discord.js bot
-const Discord = require('discord.js');
+const chalk = require('chalk');
+const fs = require("fs");
+const { google } = require('googleapis');
+const { Client, Collection, Intents, MessageEmbed } = require("discord.js");
+const { loadEvents } = require("../src/handlers/loadEvents");
+const { loadSlashCommands } = require("../src/handlers/loadSlashCommands");
+const { botToken, spreadsheetId } = require("../src/jsons/config.json");
 
-const client = new Discord.Client();
-
-client.interaction = {}; //Creating interaction object
-const DiscordButtons = require('discord-buttons-v13'); //Requiring Discord-BUttons module.
-const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-Pages module.
-DiscordButtons(client);
-
-
-client.on('ready', () => {
-  console.log(`Logged in as ${client.user.tag}!`);
+// Declaring our Discord Client
+const client = new Client({
+	allowedMentions: { parse: ["users", "roles"] },
+	intents: [
+	  Intents.FLAGS.GUILDS,
+	  Intents.FLAGS.GUILD_MESSAGES,
+	  Intents.FLAGS.GUILD_MEMBERS,
+	  Intents.FLAGS.GUILD_MESSAGE_REACTIONS,
+	  Intents.FLAGS.GUILD_WEBHOOKS,
+	  Intents.FLAGS.GUILD_VOICE_STATES,
+	  Intents.FLAGS.GUILD_INVITES,
+	  Intents.FLAGS.GUILD_BANS,
+	  Intents.FLAGS.GUILD_PRESENCES,
+	],
 });
 
-client.on('clickButton', (button) => {
-  ButtonPages.buttonInteractions(button, client.interaction);
-});
+// Google Sheets Authorisation Stuff
+const auth = new google.auth.GoogleAuth({
+	keyFile: "src/jsons/credentials.json",
+	scopes: "https://www.googleapis.com/auth/spreadsheets"
+})
+const sheetClient = auth.getClient();
+const googleSheets = google.sheets({ version: "v4", auth: sheetClient });
 
+// Stuff that will be very useful in our project
+client.sheetCommands = fs.readdirSync("./src/SlashCommands/Sheets/")
+client.slash = new Collection();
+client.auth = auth;
+client.sheetId = spreadsheetId;
+client.googleSheets = googleSheets.spreadsheets;
 
-client.on('message', msg => {
+// Declaring Slash Command and Events
+loadEvents(client);
+loadSlashCommands(client);
+
+// Error Handling
+process.on("uncaughtException", (err) => {
+	console.log("Uncaught Exception: " + err);
   
-   //   if (msg.content === '!Map-turul') {
-    //        msg.channel.send("Kiralvfalva, Gyoma, Méhkerék, Hadur Várus, Óvárus, Horka, Hévíz, Feheloval, Rozsdáskaszát, Hosvarosa, Kisbér, Tura, Hatvan", {files: ["https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png"]});
-     //       msg.channel.send("Vaja, Rátót Var", {files: ["https://static.wixstatic.com/media/ef5476_b14d489b0ef24761b19ebeb375ba7dc8~mv2.png/v1/fill/w_870,h_864,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Valley%20Fortress.png"]});
-      //      msg.channel.send("Ruda, Sovica, Csorna, Délrétek, Tavasz, Bejárat, Kistemplom, Vaseke", {files: ["https://static.wixstatic.com/media/ef5476_faf687624cb14fcfbb07efccf422a133~mv2.png/v1/fill/w_829,h_824,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Village%203.png"]});
-
-   
-
-    if(msg.content === "!maps"){
-    const embed1 = new Discord.MessageEmbed()
-        .setTitle('Ungverija')
-        .setImage('https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png')
-        .setDescription('Kiralvfalva, Gyoma, Méhkerék, Hadur Várus, Óvárus, Horka, Hévíz, Feheloval, Rozsdáskaszát, Hosvarosa, Kisbér, Tura, Hatvan')
-        .setColor('BLUE');
-
-    const embed2 = new Discord.MessageEmbed()
-       .setTitle('Ungverija')
-       .setImage('https://static.wixstatic.com/media/ef5476_b14d489b0ef24761b19ebeb375ba7dc8~mv2.png/v1/fill/w_870,h_864,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Valley%20Fortress.png')
-       .setDescription('Vaja, Rátót Var')
-       .setColor('BLUE');
-
-    const embed3 = new Discord.MessageEmbed()
-       .setTitle('Ungverija')
-       .setImage('https://static.wixstatic.com/media/ef5476_faf687624cb14fcfbb07efccf422a133~mv2.png/v1/fill/w_829,h_824,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Village%203.png')
-       .setDescription('Ruda, Sovica, Csorna, Délrétek, Tavasz, Bejárat, Kistemplom, Vaseke')   
-       .setColor('BLUE');
-
-    const embedPages = [embed1, embed2, embed3];
-  ButtonPages.createPages(client.interaction, msg, embedPages, 60 * 100 , "green", "👉","👈","❌");  
-    }
-
-
+	const exceptionembed = new MessageEmbed()
+	.setTitle("Uncaught Exception")
+	.setDescription(`${err}`)
+	.setColor("RED")
+	//client.channels.cache.get(error_logs).send({ embeds: [exceptionembed] })
+	console.log(err);
+  });
+  
+process.on("unhandledRejection", (reason, promise) => {
+	console.log(
+	  "[FATAL] Possibly Unhandled Rejection at: Promise ",
+	  promise,
+	  " reason: ",
+	  reason.message
+	);
+  
+	 const rejectionembed = new MessageEmbed()
+	.setTitle("Unhandled Promise Rejection")
+	.addField("Promise", `${promise}`)
+	.addField("Reason", `${reason.message}`)
+	.setColor("RED")
+	//client.channels.cache.get(error_logs).send({ embeds: [rejectionembed] })
 });
   
-
-client.login(process.env.TOKEN);
+client.login(botToken).then(() => {
+	console.log(
+	  chalk.bgBlueBright.black(
+		` Successfully logged in as: ${client.user.username}#${client.user.discriminator} `
+	  )
+	);
+});
