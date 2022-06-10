@@ -56,7 +56,7 @@ client.on('message', msg => {
 	 if(TWVillage3.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/=")){
 		msg.delete();
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
-		msg.channel.send("Ruda\nSovica\nCsorna\nDélrétek\nTavasz\nBejárat\nKistemplom\nVaseke")
+		msg.channel.send("Ruda\nSovica\nCsorna\nDélrétek\nTavasz\nBejárat\nKistemplom\nVaseke") 
 	 }
 	
 
