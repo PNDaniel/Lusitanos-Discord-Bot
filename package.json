@@ -1,12 +1,12 @@
 {
 	"name": "discord-slash-bot",
 	"version": "1.0.0",
-	"description": "Lusitanos Bot",
-	"main": "index.js",
+	"description": "This bot is a simple Discord Slash Bot.",
+	"main": "app.js",
 	"scripts": {
-		"format": "",
+		"format": "prettier --write .",
 		"start": "node app",
-		"dev": ""
+		"dev": "nodemon"
 	},
 	"keywords": [
 		"discord",
