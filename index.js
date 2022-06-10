@@ -18,7 +18,7 @@ client.on('clickButton', (button) => {
 });
 
 const TWCity1 = ["kiralvfalva", "gyoma", "mehkerek", "hadur varus", "ovarus", "horka", "heviz", "feheloval", "rozsdaskaszat", "hosvarosa"," kisber", "tura", "hatvan"]
-const TWValleyFortress = ['vaja, ratot var']
+const TWValleyFortress = ['vaja', 'ratot var']
 const TWVillage3 = ['ruda', 'sovica', 'csorna',' delretek', 'tavasz', 'bejarat', 'kistemplom', 'vaseke']
 
 client.on('message', msg => {
@@ -38,7 +38,7 @@ client.on('message', msg => {
 	   msg.channel.send({files: ["https://static.wixstatic.com/media/ef5476_faf687624cb14fcfbb07efccf422a133~mv2.png/v1/fill/w_829,h_824,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Village%203.png"]});
 	}
 
-	if(TWVillage3.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/equal_", "")) && msg.content.includes("/equal_")){
+	if(TWValleyFortress.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/equal_", "")) && msg.content.includes("/equal_")){
 	   msg.delete();
 	   msg.channel.send("Kiralvfalva", "Gyoma","Méhkerék","Hadur Várus", "Óvárus", "Horka", "Hévíz", "Feheloval", "Rozsdáskaszát", "Hosvarosa", "Kisbér", "Tura", "Hatvan")
 
