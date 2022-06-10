@@ -13,12 +13,25 @@ client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('clickButton', (button) => {
-  ButtonPages.buttonInteractions(button, client.interaction);
+const { MessageActionRow, MessageButton } = require('discord.js');
+
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
+
+	if (interaction.commandName === 'ping') {
+		const row = new MessageActionRow()
+			.addComponents(
+				new MessageButton()
+					.setCustomId('primary')
+					.setLabel('Primary')
+					.setStyle('PRIMARY'),
+			);
+
+		await interaction.reply({ content: 'Pong!', components: [row] });
+	}
 });
 
-
-client.on('message', msg => {
+//client.on('message', msg => {
   
    //   if (msg.content === '!Map-turul') {
     //        msg.channel.send("Kiralvfalva, Gyoma, Méhkerék, Hadur Várus, Óvárus, Horka, Hévíz, Feheloval, Rozsdáskaszát, Hosvarosa, Kisbér, Tura, Hatvan", {files: ["https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png"]});
@@ -26,7 +39,7 @@ client.on('message', msg => {
       //      msg.channel.send("Ruda, Sovica, Csorna, Délrétek, Tavasz, Bejárat, Kistemplom, Vaseke", {files: ["https://static.wixstatic.com/media/ef5476_faf687624cb14fcfbb07efccf422a133~mv2.png/v1/fill/w_829,h_824,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Village%203.png"]});
 
    
-
+/*
     if(msg.content === "!maps"){
     const embed1 = new Discord.MessageEmbed()
         .setTitle('Ungverija')
@@ -51,7 +64,7 @@ client.on('message', msg => {
     }
 
 
-});
+});*/
   
 
 client.login(process.env.TOKEN);
