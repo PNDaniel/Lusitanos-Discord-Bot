@@ -9,23 +9,8 @@ client.on('ready', () => {
 });
 
 
-client.on('interactionCreate', async interaction => {
-	if (!interaction.isCommand()) return;
 
-	if (interaction.commandName === 'ping') {
-		const row = new MessageActionRow()
-			.addComponents(
-				new MessageButton()
-					.setCustomId('primary')
-					.setLabel('Primary')
-					.setStyle('PRIMARY'),
-			);
-
-		await interaction.reply({ content: 'Pong!', components: [row] });
-	}
-});
-
-client.on('message', msg => {
+client.on('message', async msg => {
    if (msg.content === '!ping') {
       const row = new MessageActionRow()
       .addComponents(
