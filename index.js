@@ -1,13 +1,19 @@
 
-const { Client, Intents } = require('discord.js');
+const {Client, Intents , MessageActionRow, MessageButton } = require('discord.js');
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
-const { MessageActionRow, MessageButton } = require('discord.js');
 
 
 client.on('ready', () => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
+const row = new MessageActionRow()
+.addComponents(
+   new MessageButton()
+      .setCustomId('primary')
+      .setLabel('Primary')
+      .setStyle('PRIMARY'),
+);
 
 client.on('interactionCreate', async interaction => {
 	if (!interaction.isCommand()) return;
@@ -24,6 +30,22 @@ client.on('interactionCreate', async interaction => {
 		await interaction.reply({ content: 'Pong!', components: [row] });
 	}
 });
+
+  
+
+client.login(process.env.TOKEN);
+
+
+
+
+
+
+
+
+
+
+
+
 
 //client.on('message', msg => {
   
@@ -59,6 +81,3 @@ client.on('interactionCreate', async interaction => {
 
 
 });*/
-  
-
-client.login(process.env.TOKEN);
