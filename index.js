@@ -69,7 +69,7 @@ process.on("unhandledRejection", (reason, promise) => {
 	//client.channels.cache.get(error_logs).send({ embeds: [rejectionembed] })
 });
   
-client.login(botToken).then(() => {
+client.login(process.env.TOKEN).then(() => {
 	console.log(
 	  chalk.bgBlueBright.black(
 		` Successfully logged in as: ${client.user.username}#${client.user.discriminator} `
