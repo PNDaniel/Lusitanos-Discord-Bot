@@ -17,7 +17,7 @@ client.on('clickButton', (button) => {
   ButtonPages.buttonInteractions(button, client.interaction);
 });
 
-const TWCity1 = ["kiralvfalva", "gyoma", "mehkerek", "hadur varus", "ovarus", "horka", "heviz", "feheloval", "rozsdaskaszat", "hosvarosa, kisber", "tura", "hatvan"]
+const TWCity1 = ["kiralvfalva", "gyoma", "mehkerek", "hadur varus", "ovarus", "horka", "heviz", "feheloval", "rozsdaskaszat", "hosvarosa"," kisber", "tura", "hatvan"]
 
 client.on('message', msg => {
   
