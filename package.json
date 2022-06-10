@@ -1,33 +1,26 @@
 {
-  "name": "discord.lusitanos-discord-bot",
-  "version": "1.0.0",
-  "description": "Lusitanos Bot",
-  "main": "index.js",
-  "engines": {
-    "node": "*",
-    "npm": "*"
-  },
-  "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1",
-    "start": "node index.js"
-  },
-  "repository": {
-    "type": "git",
-    "url": "t"
-  },
-  "keywords": [
-    "heroku",
-    "discord.js"
-  ],
-  "author": "",
-  "license": "MIT",
-  "bugs": {
-    "url": ""
-  },
-  "homepage": "",
-  "dependencies": {
-    "@discordjs/rest": "^0.1.0-canary.0",
-    "discord-api-types": "^0.22.0",
-    "discord.js": "^13.1.0"
-  }
+	"name": "discord-slash-bot",
+	"version": "1.0.0",
+	"description": "Lusitanos Bot",
+	"main": "app.js",
+	"scripts": {
+		"format": "prettier --write .",
+		"start": "node app",
+		"dev": "nodemon"
+	},
+	"keywords": [
+		"discord",
+		"discord.js",
+		"discord slash commands"
+	],
+	"author": "Muratva Stark",
+	"license": "MIT",
+	"dependencies": {
+		"discord.js": "^12.5.1",
+		"dotenv": "^8.2.0"
+	},
+	"devDependencies": {
+		"nodemon": "^2.0.6",
+		"prettier": "^2.2.1"
+	}
 }
