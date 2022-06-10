@@ -10,19 +10,19 @@ client.on('ready', () => {
 
 
 
-client.on('message', async msg => {
-   if (msg.content === '!ping') {
-      const row = new MessageActionRow()
-      .addComponents(
-         new MessageButton()
-            .setCustomId('primary')
-            .setLabel('Primary')
-            .setStyle('PRIMARY'),
-      );
+client.on('interactionCreate', async interaction => {
+	if (!interaction.isCommand()) return;
 
-   await interaction.reply({ content: 'Pong!', components: [row] });
+	const { commandName } = interaction;
 
-   }
+	if (commandName === 'ping') {
+		await interaction.reply('Pong!');
+	} else if (commandName === 'server') {
+		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
+	} else if (commandName === 'user') {
+		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
+	}
+});
   
    //   if (msg.content === '!Map-turul') {
     //        msg.channel.send("Kiralvfalva, Gyoma, Méhkerék, Hadur Várus, Óvárus, Horka, Hévíz, Feheloval, Rozsdáskaszát, Hosvarosa, Kisbér, Tura, Hatvan", {files: ["https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png"]});
