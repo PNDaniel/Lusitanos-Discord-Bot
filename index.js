@@ -23,7 +23,7 @@ const TWValleyFortress = ['vaja', 'ratot var']
 const TWVillage3 = ['ruda', 'sovica', 'csorna',' delretek', 'tavasz', 'bejarat', 'kistemplom', 'vaseke']
 
 client.on('message', msg => {
-	if(message.author.guild_permissions.administrator){
+	if(msg.author.guild_permissions.administrator){
 	if(TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")){
 	   msg.delete();
 	  
