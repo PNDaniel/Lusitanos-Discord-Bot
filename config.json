@@ -1,6 +1,6 @@
 {
 	"token": "Bot Token",
-	"status": "Bot Status to be Displayed",
+	"status": "You",
 	"prefix": "your-prefix-here",
 	"owners": ["Alemaoo", "Alemaoo#5437", "discord_id", "type-snowflake"],
 	"embed_content": {
