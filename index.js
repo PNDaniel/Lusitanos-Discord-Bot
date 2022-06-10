@@ -18,6 +18,7 @@ client.on('clickButton', (button) => {
 });
 
 const TWCity1 = ["kiralvfalva", "gyoma", "mehkerek", "hadur varus", "ovarus", "horka", "heviz", "feheloval", "rozsdaskaszat", "hosvarosa"," kisber", "tura", "hatvan"]
+//const TWCity1_correct = ["Kiralvfalva", "Gyoma","Méhkerék","Hadur Várus", "Óvárus", "Horka", "Hévíz", "Feheloval", "Rozsdáskaszát", "Hosvarosa", "Kisbér", "Tura", "Hatvan"]
 
 client.on('message', msg => {
   
@@ -30,7 +31,7 @@ client.on('message', msg => {
 	//	.normalize("NFD").replace(/\p{Diacritic}/gu, "")
    
 	if(TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "")) && msg.content.includes("/"))
-	   msg.channel.send(msg.content.normalize("NFD").replace(/\p{Diacritic}/gu, ""), {files: ["https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png"]});
+	   msg.channel.send({files: ["https://static.wixstatic.com/media/ef5476_4d570f16907047df8d6c7bebd2c176e9~mv2.png/v1/fill/w_850,h_844,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20City%201.png"]});
    	
     if(msg.content === "!maps"){
     const embed1 = new Discord.MessageEmbed()
