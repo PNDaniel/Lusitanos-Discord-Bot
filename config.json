@@ -2,7 +2,7 @@
 	"token": "Bot Token",
 	"status": "Bot Status to be Displayed",
 	"prefix": "your-prefix-here",
-	"owners": ["array", "of", "discord_id", "type-snowflake"],
+	"owners": ["Alemaoo", "Alemaoo#5437", "discord_id", "type-snowflake"],
 	"embed_content": {
 		"title": "Support Embed Title",
 		"color": "00000",

@@ -59,7 +59,7 @@ client.on('ready', async () => {
 	
 	//Registering Slash
 	if (config.enable_slash) {
-		const rest = new REST({ version: '9' }).setToken(config.token)
+		const rest = new REST({ version: '9' }).setToken(process.env.TOKEN)
 
 		const commands = [{
 			name: 'create',
