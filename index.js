@@ -101,11 +101,11 @@ client.on('message', async msg => {
 				
 			if(fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)){	
 				msg.delete();
-				msg.channel.send(matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1));
+				msg.channel.send(matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_"," "));
 				msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`,`${path}/${matches['bestMatch']['target']}_vet.png`,`${path}/${matches['bestMatch']['target']}_doc.png`]});
 			}else{
 				msg.delete();
-				msg.channel.send(matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1));
+				msg.channel.send(matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_"," "));
 				msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`,`${path}/${matches['bestMatch']['target']}_vet.png`]});
 			}
 			}else{
