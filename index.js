@@ -70,9 +70,16 @@ client.on('message', async msg => {
 
 	 if(msg.content.inclues("/request=")){
 
-		msg.channels.get('985278059001290753').send('Hello here!');
+		
+		if (msg.attachments.size > 0) {
+			if (msg.attachments.every(attachIsImage)){
+				msg.channels.get('985278059001290753').send(msg.attachments);
+			}
+		}
 	 }
 
+
+	 
 	 if(msg.content.includes("/tropa=")){
 		var unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_")
 		var files = fs.readdirSync(path)
@@ -128,6 +135,14 @@ client.on('message', async msg => {
 
 
 });
+
+
+function attachIsImage(msgAttach) {
+    var url = msgAttach.url;
+    //True if this url is a png image.
+    return url.indexOf("png", url.length - "png".length /*or 3*/) !== -1;
+}
+
 
 async function get_google_sheets(nome) {
     return new Promise((resolve, reject) => {
