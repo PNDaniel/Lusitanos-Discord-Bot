@@ -42,26 +42,26 @@ client.on('message', async msg => {
 	   msg.channel.send({files: ["https://static.wixstatic.com/media/ef5476_faf687624cb14fcfbb07efccf422a133~mv2.png/v1/fill/w_829,h_824,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Village%203.png"]});
 	}
 
-	if(TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/=")){
+	if(TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/map=")){
 	   msg.delete();
 	   if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 	   msg.channel.send("Kiralvfalva\n Gyoma\n Méhkerék\n Hadur Várus\n Óvárus\n Horka\n Hévíz \nFeheloval\n Rozsdáskaszát\n Hosvarosa\n Kisbér\n Tura\n Hatvan")
 	}
 
-	if(TWValleyFortress.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/=")){
+	if(TWValleyFortress.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/map=")){
 		msg.delete();
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 		msg.channel.send("Vaja \n Ratót Var")
 	 }
 
-	 if(TWVillage3.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/=")){
+	 if(TWVillage3.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/=", "")) && msg.content.includes("/map=")){
 		msg.delete();
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 		msg.channel.send("Ruda\nSovica\nCsorna\nDélrétek\nTavasz\nBejárat\nKistemplom\nVaseke") 
 	 }
-	 if(msg.content=="/google"){
+	 if(msg.content.includes("/player=")) {
 		msg.delete();
-		const [a] = await Promise.all([get_google_sheets(msg.content.replace("/=", ""))]);
+		const [a] = await Promise.all([get_google_sheets(msg.content.replace("/player=", ""))]);
 		msg.channel.send(a) 
 	 }
 });
@@ -76,7 +76,7 @@ async function get_google_sheets(nome) {
 		response.data.forEach(element => {
 			
             if(element['Nation']!='undefined' && element['Nation']!="")
-            if(element[" "]==nome){
+            if(element[" "].toLowerCase()==nome.toLowerCase()){
             delete element['Nation'];
             delete element['undefined'];
             delete element['Current House'];
