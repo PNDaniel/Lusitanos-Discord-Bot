@@ -83,16 +83,17 @@ client.on('message', async msg => {
 				unit = unit.substring(1);
 			}
 			var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
+			if(parseFloat(matches['bestMatch']['target'])>0.2){
 		try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`) ) {
 				msg.delete();
 				msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`,`${path}/${matches['bestMatch']['target']}_vet.png`]});
 			}else{
-				msg.channel.send("Unidade não existe com esse nome");
+				msg.channel.send("Não existe uma unidade com esse nome");
 			}
 		  } catch(err) {
 			console.error(err)
-		  }
+		  }}else{msg.channel.send("Não existe uma unidade com esse nome");}
 	 }
 
 
