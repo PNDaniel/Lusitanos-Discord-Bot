@@ -73,7 +73,8 @@ client.on('message', async msg => {
 		
 		if (msg.attachments.size > 0) {
 			if (msg.attachments.every(attachIsImage)){
-				msg.guild.channels.get(myChannel).send(msg.attachments)
+				const channel = client.channels.cache.find(channel => channel.name === "request-channel")
+				channel.send(msg.attachments)
 			}
 		}
 	 }
