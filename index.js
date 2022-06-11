@@ -69,7 +69,11 @@ client.on('message', async msg => {
 
 
 	 if(msg.content.includes("/tropa=")){
-		const unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_")
+		var unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_")
+		while(unit.charAt(0) === '_')
+			{
+				unit = unit.substring(1);
+			}
 		msg.delete();
 		try {
 			if (fs.existsSync(`${path}/${unit}_img.png`) && fs.existsSync(`${path}/${unit}_vet.png`) ) {
