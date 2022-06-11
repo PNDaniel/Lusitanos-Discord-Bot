@@ -88,7 +88,7 @@ client.on('message', async msg => {
 		var files_that_exist= [];
 
 		for (const file of files) {
-			files_that_exist.push(file.replace("_vet.png","").replace("_img.png",""))
+			files_that_exist.push(file.replace("_vet.png","").replace("_img.png","").replace("_doc.png",""))
 			
 		  }
 		while(unit.charAt(0) === '_')
