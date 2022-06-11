@@ -73,6 +73,7 @@ client.on('message', async msg => {
 	axios.get("https://opensheet.elk.sh/1AKXJ3hl7DFJj8GP1V9z91nVxipBD8JpIJPU3qkS7x0c/responses?" + timestamp)
 	.then((response)=>{
 	  resolve(response.json());
+	  console.log(response)
 	});
 })
 }
