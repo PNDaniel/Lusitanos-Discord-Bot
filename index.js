@@ -127,7 +127,7 @@ client.on('message', async msg => {
 
 	 async function clears_chat(){
 	 	 try {
-		const fetched = await message.channel.fetchMessages({ limit: 100 });
+		const fetched = await msg.channel.fetchMessages({ limit: 100 });
 		const notPinned = fetched.filter(fetchedMsg => !fetchedMsg.pinned);
 	  
 		await client.channels.cache.get('985278059001290753').bulkDelete(notPinned, true);
