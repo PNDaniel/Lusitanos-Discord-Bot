@@ -3,6 +3,7 @@ const Discord = require('discord.js');
 const axios = require('axios').default;
 const fs = require('fs')
 var stringSimilarity = require('string-similarity');
+const schedule = require("node-schedule");
 
 const client = new Discord.Client();
 
@@ -153,14 +154,6 @@ client.on('message', async msg => {
 
 
 });
-
-
-async function attachIsImage(msgAttach) {
-    var url = msgAttach.url;
-    //True if this url is a png image.
-    return url.indexOf("png", url.length - "png".length /*or 3*/) !== -1;
-}
-
 
 async function get_google_sheets(nome) {
     return new Promise((resolve, reject) => {
