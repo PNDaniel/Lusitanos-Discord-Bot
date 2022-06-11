@@ -96,22 +96,6 @@ client.on('message', async msg => {
 				unit = unit.substring(1);
 			}
 			var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
-
-		try {
-			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`) ) {
-				msg.delete();
-				if(matches['bestMatch']['target']=='fortebraccio')
-				msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`,`${path}/${matches['bestMatch']['target']}_vet.png`,`${path}/${matches['bestMatch']['target']}_doc.png`]});
-				else
-				msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`,`${path}/${matches['bestMatch']['target']}_vet.png`]});
-
-			}else{
-				msg.channel.send("Não existe uma unidade com esse nome");
-			}
-		  } catch(err) {
-			console.error(err)
-		  }
-
 		  try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`) ) {
 				
