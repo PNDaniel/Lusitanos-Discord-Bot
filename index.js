@@ -74,7 +74,7 @@ client.on('message', async msg => {
 				for (let file of attachments) {
 					//const channel = client.channels.cache.find(channel => channel.name === "request-channel")
 					//channel.send({files: [file]});
-					msh.channel.send("ola")
+					msg.channel.send({files: [file]})
 				}
 			
 		}
