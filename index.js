@@ -114,12 +114,14 @@ client.on('message', async msg => {
 
 		  try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`) ) {
+				
+			if(fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)){	
 				msg.delete();
-			if(fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`))	
 				msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`,`${path}/${matches['bestMatch']['target']}_vet.png`,`${path}/${matches['bestMatch']['target']}_doc.png`]});
-			else
+			}else{
+				msg.delete();
 				msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`,`${path}/${matches['bestMatch']['target']}_vet.png`]});
-
+			}
 			}else{
 				msg.channel.send("Não existe uma unidade com esse nome");
 			}
