@@ -61,12 +61,12 @@ client.on('message', async msg => {
 	 }
 	 if(msg.content=="/google"){
 		msg.delete();
-		const [a] = await Promise.all([get_google_sheets()]);
-		//msg.channel.send(a.slice(0, 1999)) 
+		const [a] = await Promise.all([get_google_sheets(msg.content.replace("/=", ""))]);
+		msg.channel.send(a) 
 	 }
 });
 
-  async function get_google_sheets() {
+async function get_google_sheets(nome) {
     return new Promise((resolve, reject) => {
     var currentDate = new Date();
     var timestamp = currentDate.getTime();
@@ -75,8 +75,25 @@ client.on('message', async msg => {
 		//resolve(JSON.stringify(response.data))
 		response.data.forEach(element => {
 			
-			
-			console.log(element[1])});
+            if(element['Nation']!='undefined' && element['Nation']!="")
+            if(element[" "]==nome){
+            delete element['Nation'];
+            delete element['undefined'];
+            delete element['Current House'];
+            delete element[''];
+            delete element[' '];
+            var string = JSON.stringify(element, null, 2)
+            var tentative = (string.match(/\?/g) || []).length;
+            var presenca = (string.match(/✓/g) || []).length;
+            var falta = (string.match(/x/g) || []).length;
+            resolve(JSON.stringify("Presenças:\nPresente: "+presenca+"\nFalta: "+falta+"Tentative: " + tentative))
+            }
+
+
+        
+        
+        
+        });
 		
 	});
 })
