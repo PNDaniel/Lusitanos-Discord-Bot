@@ -68,6 +68,10 @@ client.on('message', async msg => {
 		msg.channel.send(a) 
 	 }
 
+	 if(msg.content.inclues("/request=")){
+
+		msg.channels.get('985278059001290753').send('Hello here!');
+	 }
 
 	 if(msg.content.includes("/tropa=")){
 		var unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_")
