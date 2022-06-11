@@ -120,7 +120,7 @@ client.on('message', async msg => {
 
 
 
-function delete_all_expect_pin()
+async function delete_all_expect_pin()
 {
     setTimeout(function()
     {
