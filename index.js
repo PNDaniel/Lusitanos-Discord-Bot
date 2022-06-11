@@ -63,6 +63,8 @@ client.on('message', async msg => {
 		msg.delete();
 		const [a] = await Promise.all([get_google_sheets(msg.content.replace("/player=", ""))]);
 		msg.channel.send(a) 
+		msg.channel.send({files: ["https://docs.google.com/spreadsheets/d/e/2PACX-1vSN32QGdXVRsS7K4TTMpdrg8TR1puymvsbLte7Fp95LSnsbtbOjpDusj9UZlmhTvxw4i2PbRDSbRn-w/pubhtml"]});
+
 	 }
 });
 
