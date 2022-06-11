@@ -69,11 +69,13 @@ client.on('message', async msg => {
 
 	 if(msg.content.includes("/tropa=")){
 		const unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_")
-		console.log(unit)
-		if(msg.content.includes("iron reapers")){
-			msg.delete();
-			msg.channel.send({files: [`${path}/iron_reapers_img.png`,`${path}/iron_reapers_vet.png`]});
-			msg.author.send({files: [`${path}/iron_reapers_img.png`,`${path}/iron_reapers_vet.png`]});
+		msg.delete();
+		try {
+			msg.channel.send({files: [`${path}/${unit}_img.png`,`${path}/${unit}_vet.png`]});
+			//msg.author.send({files: [`${path}/${unit}_img.png`,`${path}/${unit}_vet.png`]});
+		}  
+		catch{
+			msg.channel.send("Tropa não existe.")
 		}
 	 }
 
