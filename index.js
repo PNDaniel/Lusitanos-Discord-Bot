@@ -1,6 +1,7 @@
 // Discord.js bot
 const Discord = require('discord.js');
 const axios = require('axios').default;
+const fs = require('fs')
 
 const client = new Discord.Client();
 
@@ -71,12 +72,12 @@ client.on('message', async msg => {
 		const unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_")
 		msg.delete();
 		try {
-			msg.channel.send({files: [`${path}/${unit}_img.png`,`${path}/${unit}_vet.png`]});
-			//msg.author.send({files: [`${path}/${unit}_img.png`,`${path}/${unit}_vet.png`]});
-		}  
-		catch (error) {
-			msg.channel.send(error)
-		}
+			if (fs.existsSync(`${path}/${unit}_img.png`) && fs.existsSync(`${path}/${unit}_vet.png`) ) {
+				msg.channel.send({files: [`${path}/${unit}_img.png`,`${path}/${unit}_vet.png`]});
+			}
+		  } catch(err) {
+			console.error(err)
+		  }
 	 }
 
 
