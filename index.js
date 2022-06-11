@@ -71,9 +71,17 @@ client.on('message', async msg => {
 
 	 if(msg.content.includes("/tropa=")){
 		var unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_")
-		var files = fs.readdirSync(path).replace("_icon.png", "").replace("_vet.png", "")
-		var matches = stringSimilarity.findBestMatch(unit, files);
+		var files = fs.readdirSync(path)
+		var files_that_exist= [];
+
+		for (const file of files) {
+			console.log(file)
+			files_that_exist.push(file.replace("_vet.png","").replace("_img.png",""))
+		  }
+
+		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
 		console.log(matches)
+		console.log(files_that_exist)
 		while(unit.charAt(0) === '_')
 			{
 				unit = unit.substring(1);
