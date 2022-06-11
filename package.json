@@ -30,6 +30,7 @@
 	  "discord-button-pages":"^1.1.9",
 	  "discord-buttons-v13":"^4.0.2",
 	  "axios":"^0.27.2",
-	  "string-similarity":"^4.0.4"
+	  "string-similarity":"^4.0.4",
+	  "node-schedule":"^2.1.0"
 	}
   }
