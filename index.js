@@ -88,7 +88,7 @@ async function get_google_sheets(nome) {
             var tentative = (string.match(/\?/g) || []).length;
             var presenca = (string.match(/✓/g) || []).length;
             var falta = (string.match(/x/g) || []).length;
-            resolve("Presenças:\nPresente: "+presenca+"\nFalta: "+falta+"Tentative: " + tentative)
+            resolve("Presenças para :"+nome+"\nPresente: "+presenca+"\nFalta: "+falta+"\nTentative: " + tentative)
             }
 
 
