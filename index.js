@@ -61,7 +61,7 @@ client.on('message', async msg => {
 	 }
 	 if(msg.content=="/google"){
 		msg.delete();
-		//const [a] = await Promise.all([get_google_sheets()]);
+		const [a] = await Promise.all([get_google_sheets()]);
 		//msg.channel.send(a.slice(0, 1999)) 
 	 }
 });
