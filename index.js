@@ -71,8 +71,9 @@ client.on('message', async msg => {
 
 
 
-	 if(msg.content.included("/tropa=")){
-		if(msg.content.included("iron reapers")){
+	 if(msg.content.includes("/tropa=")){
+		if(msg.content.includes("iron reapers")){
+			msg.delete();
 			msg.channel.send({files: [`${path}/'iron_reapers_icon.png'`,`${path}/'iron_reapers_ver.png'`,"https://static.wixstatic.com/media/ef5476_faf687624cb14fcfbb07efccf422a133~mv2.png/v1/fill/w_829,h_824,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Village%203.png"]});
 
 
