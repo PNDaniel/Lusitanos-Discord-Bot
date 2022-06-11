@@ -9,7 +9,7 @@ const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-
 DiscordButtons(client);
 
 
-client.on('ready', () => {
+client.on('ready' ,async() => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
@@ -63,7 +63,6 @@ client.on('message', msg => {
 		const [a] = await Promise.all([get_google_sheets()]);
 		msg.channel.send(a) 
 	 }
-
 });
 
   async function get_google_sheets() {
