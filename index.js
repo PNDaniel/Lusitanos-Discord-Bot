@@ -71,6 +71,8 @@ client.on('message', async msg => {
 		if(msg.content.includes("iron reapers")){
 			msg.delete();
 			msg.channel.send({files: [`${path}/iron_reapers_img.png`,`${path}/iron_reapers_vet.png`]});
+			msg.author.send("tambem consigo enviar para aqui\n")
+			msg.author.send({files: [`${path}/iron_reapers_img.png`,`${path}/iron_reapers_vet.png`]});
 		}
 	 }
 
@@ -78,6 +80,8 @@ client.on('message', async msg => {
 		if(msg.content.includes("berserkers")){
 			msg.delete();
 			msg.channel.send({files: [`${path}/berserker_img.png`,`${path}/berserker_vet.png`]});
+			msg.author.send("tambem consigo enviar para aqui\n")
+			msg.author.send({files: [`${path}/berserker_img.png`,`${path}/berserker_vet.png`]});
 		}
 	 }
 
