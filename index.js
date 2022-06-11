@@ -78,14 +78,12 @@ client.on('message', async msg => {
 			files_that_exist.push(file.replace("_vet.png","").replace("_img.png",""))
 			
 		  }
-
-		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
-		console.log(matches)
-		console.log(files_that_exist)
 		while(unit.charAt(0) === '_')
 			{
 				unit = unit.substring(1);
 			}
+			var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
+			console.log(matches)
 		try {
 			if (fs.existsSync(`${path}/${unit}_img.png`) && fs.existsSync(`${path}/${unit}_vet.png`) ) {
 				msg.delete();
