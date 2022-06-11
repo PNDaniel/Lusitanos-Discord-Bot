@@ -71,9 +71,11 @@ client.on('message', async msg => {
 	 if(msg.content.includes("/request=")){
 		msg.attachments.forEach(attachment => {
 			const ImageLink = attachment.proxyURL;
+			msg.delete();
+			msg.author.send("Update has been requested!")
+			msg.author.send({files: [ImageLink]})
+			client.channels.cache.get('985278059001290753').send(msg.content);
 			client.channels.cache.get('985278059001290753').send({files: [ImageLink]});
-
-
 		});
 	 }
 
