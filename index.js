@@ -124,12 +124,21 @@ client.on('message', async msg => {
 
 
 
+	 async function clears_chat(){
+	 	 try {
+		const fetched = await message.channel.fetchMessages({ limit: 100 });
+		const notPinned = fetched.filter(fetchedMsg => !fetchedMsg.pinned);
+	  
+		await client.channels.cache.get('985278059001290753').bulkDelete(notPinned, true);
+	  } catch(err) {
+		console.error(err);
+	  }
+	}
 
 
-
-
-
-
+	const job = schedule.scheduleJob('1 * * * * *', function () {
+		clears_chat()
+	  });
 
 
 
