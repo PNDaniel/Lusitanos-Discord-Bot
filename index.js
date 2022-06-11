@@ -9,7 +9,7 @@ const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-
 DiscordButtons(client);
 
 
-client.on('ready' ,async() => {
+client.on('ready' ,() => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
 
@@ -22,7 +22,7 @@ const TWCity1 = ["marraquexe","kiralvfalva", "gyoma", "mehkerek", "hadur varus",
 const TWValleyFortress = ['vaja', 'ratot var']
 const TWVillage3 = ['ruda', 'sovica', 'csorna',' delretek', 'tavasz', 'bejarat', 'kistemplom', 'vaseke']
 
-client.on('message', msg => {
+client.on('message', async msg => {
 	if(TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")){
 	   msg.delete();
 	   if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
