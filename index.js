@@ -83,7 +83,7 @@ client.on('message', async msg => {
 				unit = unit.substring(1);
 			}
 			var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
-			console.log(matches['bestMatch'])
+			console.log(matches['bestMatch']['target'])
 		try {
 			if (fs.existsSync(`${path}/${matches[0]}_img.png`) && fs.existsSync(`${path}/${matches[0]}_vet.png`) ) {
 				msg.delete();
