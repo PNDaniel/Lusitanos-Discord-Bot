@@ -62,7 +62,7 @@ client.on('message', async msg => {
 	 if(msg.content=="/google"){
 		msg.delete();
 		const [a] = await Promise.all([get_google_sheets()]);
-		msg.channel.send(a) 
+		msg.channel.send(a.slice(0, 3999)) 
 	 }
 });
 
@@ -72,7 +72,7 @@ client.on('message', async msg => {
     var timestamp = currentDate.getTime();
 	axios.get("https://opensheet.elk.sh/1AKXJ3hl7DFJj8GP1V9z91nVxipBD8JpIJPU3qkS7x0c/responses?" + timestamp)
 	.then((response)=>{
-		resolve(JSON.stringify(response.data.substring(0, 3999)))
+		resolve(JSON.stringify(response.data))
 	});
 })
 }
