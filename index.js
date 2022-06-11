@@ -71,7 +71,7 @@ client.on('message', async msg => {
 
 	 if(msg.content.includes("/tropa=")){
 		var unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_")
-		var files = fs.readdirSync(path).replace(/\.[^/.]+$/, "")
+		var files = fs.readdirSync(path).replace("_icon.png", "").replace("_vet.png", "")
 		var matches = stringSimilarity.findBestMatch(unit, files);
 		console.log(matches)
 		while(unit.charAt(0) === '_')
