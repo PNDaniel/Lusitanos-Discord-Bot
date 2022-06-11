@@ -75,7 +75,7 @@ client.on('message', async msg => {
 			msg.delete();
 			msg.author.send("Update has been requested!")
 			msg.author.send({files: [ImageLink]})
-			client.channels.cache.get('985278059001290753').send(msg.content.replace("/request=",""));
+			client.channels.cache.get('985278059001290753').send(msg.author.username + " :\n\n\n" +msg.content.replace("/request=",""));
 			client.channels.cache.get('985278059001290753').send({files: [ImageLink]});
 		});
 	 }
