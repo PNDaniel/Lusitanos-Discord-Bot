@@ -8,6 +8,7 @@ client.interaction = {}; //Creating interaction object
 const DiscordButtons = require('discord-buttons-v13'); //Requiring Discord-BUttons module.
 const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-Pages module.
 DiscordButtons(client);
+const path = './images'
 
 
 client.on('ready' ,() => {
@@ -64,6 +65,47 @@ client.on('message', async msg => {
 		const [a] = await Promise.all([get_google_sheets(msg.content.replace("/player=", ""))]);
 		msg.channel.send(a) 
 	 }
+
+
+
+
+
+
+	 if(msg.content.included("/tropa=")){
+		if(msg.content.included("iron reapers")){
+			msg.channel.send({files: [`${path}/'iron_reapers_icon.png'`,`${path}/'iron_reapers_ver.png'`,"https://static.wixstatic.com/media/ef5476_faf687624cb14fcfbb07efccf422a133~mv2.png/v1/fill/w_829,h_824,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Village%203.png"]});
+
+
+		}
+
+	 }
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 });
 
 async function get_google_sheets(nome) {
