@@ -99,7 +99,7 @@ client.on('message', async msg => {
 			var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
 		  try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`) ) {
-				
+			delete_all_expect_pin()
 			if(fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)){	
 				msg.delete();
 				msg.channel.send(matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_"," "));
@@ -118,21 +118,17 @@ client.on('message', async msg => {
 	 }
 
 
-	 if (msg.content === "/bulk") {
+
+
+function delete_all_expect_pin()
+{
+    setTimeout(function()
+    {
 		const allMessages = await msg.channel.messages.fetch()
 		const deletable = allMessages.filter(message => !message.pinned)
 		await msg.channel.bulkDelete(deletable, true)
-	  }
-
-
-
-
-
-
-
-
-
-
+    },10000);
+}
 
 
 });
