@@ -68,7 +68,7 @@ client.on('message', async msg => {
 		msg.channel.send(a) 
 	 }
 
-	 if(msg.content.inclues("/request=")){
+	 if(msg.content.includes("/request=")){
 
 		
 		if (msg.attachments.size > 0) {
@@ -79,7 +79,7 @@ client.on('message', async msg => {
 	 }
 
 
-	 
+
 	 if(msg.content.includes("/tropa=")){
 		var unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_")
 		var files = fs.readdirSync(path)
@@ -137,7 +137,7 @@ client.on('message', async msg => {
 });
 
 
-function attachIsImage(msgAttach) {
+async function attachIsImage(msgAttach) {
     var url = msgAttach.url;
     //True if this url is a png image.
     return url.indexOf("png", url.length - "png".length /*or 3*/) !== -1;
