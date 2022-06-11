@@ -73,7 +73,7 @@ client.on('message', async msg => {
 		
 		if (msg.attachments.size > 0) {
 			if (msg.attachments.every(attachIsImage)){
-				msg.channels.get('985278059001290753').send(msg.attachments);
+				msg.guild.channels.get(myChannel).send(msg.attachments)
 			}
 		}
 	 }
