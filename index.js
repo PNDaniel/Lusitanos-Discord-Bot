@@ -75,8 +75,8 @@ client.on('message', async msg => {
 		var files_that_exist= [];
 
 		for (const file of files) {
-			console.log(file)
 			files_that_exist.push(file.replace("_vet.png","").replace("_img.png",""))
+			
 		  }
 
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
