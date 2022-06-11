@@ -69,13 +69,13 @@ client.on('message', async msg => {
 	 }
 
 	 if(msg.content.includes("/request=")){
-
-		
-		if (msg.attachments.size > 0) {
-			if (msg.attachments.every(attachIsImage)){
-				const channel = client.channels.cache.find(channel => channel.name === "request-channel")
-				channel.send(msg.attachments)
-			}
+			if (message.attachments) {
+				let attachments = message.attachments;
+				for (let file of attachments) {
+					const channel = client.channels.cache.find(channel => channel.name === "request-channel")
+					channel.send({files: [file]});
+				}
+			
 		}
 	 }
 
