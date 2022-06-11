@@ -69,8 +69,8 @@ client.on('message', async msg => {
 	 }
 
 	 if(msg.content.includes("/request=")){
-			if (message.attachments) {
-				let attachments = message.attachments;
+			if (msg.attachments) {
+				let attachments = msg.attachments;
 				for (let file of attachments) {
 					const channel = client.channels.cache.find(channel => channel.name === "request-channel")
 					channel.send({files: [file]});
