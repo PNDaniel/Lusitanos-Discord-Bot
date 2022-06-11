@@ -82,12 +82,10 @@ client.on('message', async msg => {
 			{
 				unit = unit.substring(1);
 			}
-			var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
-			console.log(matches['bestMatch']['target'])
 		try {
-			if (fs.existsSync(`${path}/${matches[0]}_img.png`) && fs.existsSync(`${path}/${matches[0]}_vet.png`) ) {
+			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`) ) {
 				msg.delete();
-				msg.channel.send({files: [`${path}/${matches[0]}_img.png`,`${path}/${matches[0]}_vet.png`]});
+				msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`,`${path}/${matches['bestMatch']['target']}_vet.png`]});
 			}else{
 				msg.channel.send("Unidade não existe com esse nome");
 			}
