@@ -71,7 +71,9 @@ client.on('message', async msg => {
 	 if(msg.content.includes("/request=")){
 		msg.attachments.forEach(attachment => {
 			const ImageLink = attachment.proxyURL;
-			msg.channel.send(`\`${ImageLink}\``).catch(error)
+			client.channels.cache.get('985278059001290753').send({files: [ImageLink]});
+
+
 		});
 	 }
 
