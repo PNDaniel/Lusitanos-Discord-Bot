@@ -74,10 +74,12 @@ client.on('message', async msg => {
 			{
 				unit = unit.substring(1);
 			}
-		msg.delete();
 		try {
 			if (fs.existsSync(`${path}/${unit}_img.png`) && fs.existsSync(`${path}/${unit}_vet.png`) ) {
+				msg.delete();
 				msg.channel.send({files: [`${path}/${unit}_img.png`,`${path}/${unit}_vet.png`]});
+			}else{
+				msg.channel.send("Unidade não existe com esse nome");
 			}
 		  } catch(err) {
 			console.error(err)
