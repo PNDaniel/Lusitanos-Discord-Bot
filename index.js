@@ -118,29 +118,11 @@ client.on('message', async msg => {
 	 }
 
 
-
-
-
-
-
-
-
-	 async function clears_chat(){
-	 	 try {
-		const fetched = await msg.channel.fetchMessages({ limit: 100 });
-		const notPinned = fetched.filter(fetchedMsg => !fetchedMsg.pinned);
-	  
-		await client.channels.cache.get('985278059001290753').bulkDelete(notPinned, true);
-	  } catch(err) {
-		console.error(err);
+	 if (msg.content === "/bulk") {
+		const allMessages = await msg.channel.messages.fetch()
+		const deletable = allMessages.filter(message => !message.pinned)
+		await msg.channel.bulkDelete(deletable, true)
 	  }
-	}
-
-
-	const job = schedule.scheduleJob('1 * * * * *', function () {
-		clears_chat()
-	  });
-
 
 
 
