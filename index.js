@@ -27,6 +27,7 @@ const TWValleyFortress = ['vaja', 'ratot var']
 const TWVillage3 = ['ruda', 'sovica', 'csorna',' delretek', 'tavasz', 'bejarat', 'kistemplom', 'vaseke']
 
 client.on('message', async msg => {
+
 	if(TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")){
 	   msg.delete();
 	   if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
@@ -74,15 +75,15 @@ client.on('message', async msg => {
 			msg.delete();
 			msg.author.send("Update has been requested!")
 			msg.author.send({files: [ImageLink]})
-			client.channels.cache.get('985278059001290753').send(msg.content);
+			client.channels.cache.get('985278059001290753').send(msg.content.replace("/request=",""));
 			client.channels.cache.get('985278059001290753').send({files: [ImageLink]});
 		});
 	 }
 
 
 
-	 if(msg.content.includes("/tropa=")){
-		var unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_")
+	 if(msg.content.includes("/tropa=") || msg.content.includes("/tropas=")){
+		var unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_").replace("/tropas=","")
 		var files = fs.readdirSync(path)
 		var files_that_exist= [];
 
