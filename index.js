@@ -74,8 +74,8 @@ client.on('message', async msg => {
 			msg.channel.send({files: [`${path}/${unit}_img.png`,`${path}/${unit}_vet.png`]});
 			//msg.author.send({files: [`${path}/${unit}_img.png`,`${path}/${unit}_vet.png`]});
 		}  
-		catch{
-			msg.channel.send("Tropa não existe.")
+		catch (error) {
+			msg.channel.send(error)
 		}
 	 }
 
