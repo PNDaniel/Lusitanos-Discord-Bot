@@ -1,5 +1,6 @@
 // Discord.js bot
 const Discord = require('discord.js');
+const axios = require('axios').default;
 
 const client = new Discord.Client();
 
@@ -69,9 +70,10 @@ client.on('message', async msg => {
     return new Promise((resolve, reject) => {
     var currentDate = new Date();
     var timestamp = currentDate.getTime();
-    $.get("https://opensheet.elk.sh/1AKXJ3hl7DFJj8GP1V9z91nVxipBD8JpIJPU3qkS7x0c/responses" + timestamp, function(data) {
-            resolve(data)   
-    });
+	axios.get("https://opensheet.elk.sh/1AKXJ3hl7DFJj8GP1V9z91nVxipBD8JpIJPU3qkS7x0c/responses?" + timestamp)
+	.then((response)=>{
+	  resolve(response);
+	});
 })
 }
 
