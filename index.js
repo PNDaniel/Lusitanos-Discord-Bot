@@ -58,9 +58,24 @@ client.on('message', msg => {
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 		msg.channel.send("Ruda\nSovica\nCsorna\nDélrétek\nTavasz\nBejárat\nKistemplom\nVaseke") 
 	 }
-	
+	 if(msg.content=="/google"){
+		msg.delete();
+		const [a] = await Promise.all([get_google_sheets()]);
+		msg.channel.send(a) 
+	 }
 
 });
-  
+
+  function get_google_sheets() {
+    return new Promise((resolve, reject) => {
+    var currentDate = new Date();
+    var timestamp = currentDate.getTime();
+    $.get("https://opensheet.elk.sh/1AKXJ3hl7DFJj8GP1V9z91nVxipBD8JpIJPU3qkS7x0c/responses" + timestamp, function(data) {
+            resolve(data)   
+    });
+})
+}
 
 client.login(process.env.TOKEN);
+
+
