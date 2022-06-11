@@ -67,21 +67,17 @@ client.on('message', async msg => {
 	 }
 
 
-
-
-
-
 	 if(msg.content.includes("/tropa=")){
 		if(msg.content.includes("iron reapers")){
 			msg.delete();
-			msg.channel.send({files: [`${path}/iron_reapers_icon.png`,`${path}/iron_reapers_vet.png`]});
+			msg.channel.send({files: [`${path}/iron_reapers_img.png`,`${path}/iron_reapers_vet.png`]});
 		}
 	 }
 
 	 if(msg.content.includes("/tropa=")){
 		if(msg.content.includes("berserkers")){
 			msg.delete();
-			msg.channel.send({files: [`${path}/berserkers_icon.png`,`${path}/berserkers_vet.png`]});
+			msg.channel.send({files: [`${path}/berserker_img.png`,`${path}/berserker_vet.png`]});
 		}
 	 }
 
