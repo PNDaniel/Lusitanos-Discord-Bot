@@ -61,8 +61,8 @@ client.on('message', async msg => {
 	 }
 	 if(msg.content=="/google"){
 		msg.delete();
-		const [a] = await Promise.all([get_google_sheets()]);
-		msg.channel.send(a.slice(0, 1999)) 
+		//const [a] = await Promise.all([get_google_sheets()]);
+		//msg.channel.send(a.slice(0, 1999)) 
 	 }
 });
 
@@ -70,9 +70,10 @@ client.on('message', async msg => {
     return new Promise((resolve, reject) => {
     var currentDate = new Date();
     var timestamp = currentDate.getTime();
-	axios.get("https://opensheet.elk.sh/1AKXJ3hl7DFJj8GP1V9z91nVxipBD8JpIJPU3qkS7x0c/responses?" + timestamp)
+	axios.get("https://opensheet.elk.sh/1uUu5epwHjGf2ykQlHD4QfPhU-RS0FfYsgrFiMddXxlk/Presen%C3%A7as%20S%20XII?" + timestamp)
 	.then((response)=>{
-		resolve(JSON.stringify(response.data))
+		//resolve(JSON.stringify(response.data))
+		console.log(response.data[0])
 	});
 })
 }
