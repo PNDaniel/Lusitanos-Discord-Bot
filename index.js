@@ -73,7 +73,11 @@ client.on('message', async msg => {
 	axios.get("https://opensheet.elk.sh/1uUu5epwHjGf2ykQlHD4QfPhU-RS0FfYsgrFiMddXxlk/Presen%C3%A7as%20S%20XII?" + timestamp)
 	.then((response)=>{
 		//resolve(JSON.stringify(response.data))
-		console.log(response.data[0])
+		response.data.forEach(element => {
+			
+			
+			console.log(element[1])});
+		
 	});
 })
 }
