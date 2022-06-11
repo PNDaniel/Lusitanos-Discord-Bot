@@ -2,6 +2,7 @@
 const Discord = require('discord.js');
 const axios = require('axios').default;
 const fs = require('fs')
+var stringSimilarity = require('string-similarity');
 
 const client = new Discord.Client();
 
@@ -71,7 +72,8 @@ client.on('message', async msg => {
 	 if(msg.content.includes("/tropa=")){
 		var unit = msg.content.toLowerCase().replace("/tropa=","").replace(" ","_")
 		var files = fs.readdirSync(path);
-		console.log(files)
+		var matches = stringSimilarity.findBestMatch(unit, files);
+		console.log(matches)
 		while(unit.charAt(0) === '_')
 			{
 				unit = unit.substring(1);
