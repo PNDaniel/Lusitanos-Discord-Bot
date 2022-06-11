@@ -66,7 +66,7 @@ client.on('message', msg => {
 
 });
 
-  function get_google_sheets() {
+  async function get_google_sheets() {
     return new Promise((resolve, reject) => {
     var currentDate = new Date();
     var timestamp = currentDate.getTime();
