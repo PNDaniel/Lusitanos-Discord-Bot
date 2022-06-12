@@ -23,7 +23,7 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'ping') {
+	if (commandName === 'tropa=') {
 		const message = interaction.options.data
 		await interaction.reply(message);
 	} else if (commandName === 'server') {
