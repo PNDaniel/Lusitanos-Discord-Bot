@@ -130,7 +130,6 @@ client.on('message', async msg => {
 		try {
 					delete_all_expect_pin()
 					msg.delete();
-					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 
 					var type = 0
 					if(files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png") && files.includes(matches['bestMatch']['target']+"_img.png"))
@@ -139,8 +138,11 @@ client.on('message', async msg => {
 					type=1
 
 					var data = await get_unit_linkV3(matches['bestMatch']['target'],type);		
-
+					if(type==0){
+						msg.channel.send(`Não existe dados suficientes para esta unidade<t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
+					}
 					if(type>0)	{	
+					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 					const Embed = new Discord.MessageEmbed()
 									.setColor('#0099ff')
 									.setTitle('Guide for '+"**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**")
