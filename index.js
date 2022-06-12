@@ -248,7 +248,7 @@ async function get_image_url(id,type){
     return new Promise((resolve, reject) => {
      axios.get("https://drive.google.com/uc?id="+id).then((response) => {
         //console.log(response.request.res.req._redirectable._currentUrl)
-		var tittle = ""
+		var title = ""
 		if(type==1)
 		title = "Unit"
 		if(type==2)
