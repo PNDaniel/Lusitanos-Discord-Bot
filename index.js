@@ -34,6 +34,9 @@ client.on('message', async msg => {
 
 	if (TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")) {
 		msg.delete();
+		var spreadsheetId = '1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs'
+		const res = await googleSheets.spreadsheets.values.get({spreadsheetId, range: `Sheet1!D1`});
+			console.log(res.data);
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 			msg.channel.send({
 				files: ["https://lh3.googleusercontent.com/d/1Y3LLa9cwIuHFRuhEtJ4RpUXhL-4a1Jbv"]
@@ -192,5 +195,6 @@ async function get_google_sheets(nome) {
 			});
 	})
 }
+
 
 client.login(process.env.TOKEN);
