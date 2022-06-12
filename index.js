@@ -136,8 +136,9 @@ client.on('message', async msg => {
 					type=2
 					else
 					type=1
+
 					var data = await get_unit_linkV3(matches['bestMatch']['target'],type);		
-					msg.channel.send(data.length)			
+
 					if(type>0)	{	
 					const Embed = new Discord.MessageEmbed()
 									.setColor('#0099ff')
@@ -218,6 +219,8 @@ async function get_unit_linkV3(name,type){
 
 	}
 });
+msg.channel.send(1)			
+
 if(type==2){
 const  [link_img, link_vet, link_doc] =  await Promise.all([
     axios.get(`https://drive.google.com/uc?id=${id_img}`),
@@ -225,6 +228,8 @@ const  [link_img, link_vet, link_doc] =  await Promise.all([
 	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
 	
   ])
+  msg.channel.send(2)			
+
   return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl,link_doc.request.res.req._redirectable._currentUrl]
 
 }else{
@@ -232,6 +237,8 @@ const  [link_img, link_vet, link_doc] =  await Promise.all([
 		axios.get(`https://drive.google.com/uc?id=${id_img}`),
 		axios.get(`https://drive.google.com/uc?id=${id_vet}`)
 	  ])
+	  msg.channel.send(3)			
+
 	  return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl]
 
 }
