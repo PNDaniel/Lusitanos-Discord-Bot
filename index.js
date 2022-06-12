@@ -129,7 +129,7 @@ client.on('message', async msg => {
 		
 		try {
 					delete_all_expect_pin()
-					msg.delete();
+					
 
 					var type = 0
 					if(files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png") && files.includes(matches['bestMatch']['target']+"_img.png"))
