@@ -134,8 +134,6 @@ client.on('message', async msg => {
 					msg.channel.send({
 						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
 					});
-					const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(get_unit_link(matches['bestMatch']['target'])[0]);
-					msg.channel.send(embed)
 				} else {
 					delete_all_expect_pin()
 					msg.delete();
