@@ -40,7 +40,7 @@ client.on('message', async msg => {
 		.then((response) => {
 			console.log(response.request.res.req._redirectable._currentUrl)
 			msg.channel.send({
-				files: [response.request.res.req._redirectable._currentUrl]
+				files: [response.request.res.req._redirectable._currentUrl+".png"]
 			});
 
 		});
