@@ -134,7 +134,9 @@ client.on('message', async msg => {
 					//msg.channel.send({
 				//		files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
 			//		});
-			 	get_unit_link(matches['bestMatch']['target'])
+			var a = await Promise.all([get_unit_link(matches['bestMatch']['target'])]);
+			console.log(a)	
+
 				} else {
 					delete_all_expect_pin()
 					msg.delete();
@@ -179,46 +181,29 @@ async function get_unit_link(name){
     var link_vet = null;
     var link_img = null;
     var link_doc = null;
+    return new Promise((resolve, reject) => {
  axios.get("https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3")
 .then((response) => {
     response.data.forEach(element => {
         if(element['Image Name'].includes(name)){
             if(element['Image Name'].includes('_img'))
-			link_img = element['Image ID']
+            link_img = await Promise.all([get_image_url(element['Image ID'],1)]);
             if(element['Image Name'].includes('_vet'))
-			link_vet = element['Image ID']
+			link_vet = await Promise.all([get_image_url(element['Image ID'],2)]);
             if(element['Image Name'].includes('_doc'))
-			link_doc = element['Image ID']
+			link_doc = await Promise.all([get_image_url(element['Image ID'],3)]);
 
-			if(link_vet!=null && link_doc != null && link_img!= null){
-			var [a, b, c] = await Promise.all([ get_image_url(element['Image ID'],1),  get_image_url(element['Image ID'],2),  get_image_url(element['Image ID'],3)]);
-			console.log(a)	
-		}
-	}
+        }
     });
 });
-
+});
 
 }
 async function get_image_url(id,type){
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
      axios.get("https://drive.google.com/uc?id="+id).then((response) => {
         //console.log(response.request.res.req._redirectable._currentUrl)
-		var title = ""
-		if(type==1)
-		title = "Unit"
-		if(type==2)
-		title = "Veterancy"
-		if(type==3)
-		title = "Doctrine"
-		if(type==1){
-		msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
-		var embed = new Discord.MessageEmbed().setImage(response.request.res.req._redirectable._currentUrl);
-					msg.channel.send(embed) 
-		}
-		else
-		var embed = new Discord.MessageEmbed().setTitle(title).setImage(response.request.res.req._redirectable._currentUrl);
-					msg.channel.send(embed) 
+			resolve(response.request.res.req._redirectable._currentUrl)
             });
         });
 }
