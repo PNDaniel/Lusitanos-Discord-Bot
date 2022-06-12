@@ -120,7 +120,7 @@ client.on('message', async msg => {
 		var files_that_exist = [];
 		for (const file of files) {
 			if(!file.includes("_vet.png") || !file.includes("_doc.png"))
-			files_that_exist.push(file.replace("vet.png", "").replace("img.png", "").replace("doc.png", "").replace("_", " "))
+			files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
 		}
 		while (unit.charAt(0) === '_') {
 			unit = unit.substring(1);
@@ -129,7 +129,7 @@ client.on('message', async msg => {
 		
 		try {
 					delete_all_expect_pin()
-					
+					//msg.delete();
 
 					var type = 0
 					if(files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png") && files.includes(matches['bestMatch']['target']+"_img.png"))
