@@ -51,6 +51,13 @@ client.on('message', async msg => {
     const msg_delete = "!help for help command !"; // Défault : The embeds pages is closed !
 
     createPages(bot, message, embeds, ButtonStyle, msg_delete);
+
+	const exampleEmbed = new Discord.MessageEmbed()
+	.setTitle('Some title')
+	.attachFiles([`${path}/archer_militia_img.png`])
+	.setImage(`attachment://${path}/archer_militia_img.png`);
+
+	msg.channel.send(exampleEmbed);
 }
 
 	}
