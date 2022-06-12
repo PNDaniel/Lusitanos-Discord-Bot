@@ -30,11 +30,10 @@ client.on('message', async msg => {
 	if (TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")) {
 		msg.delete();
 
-		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
-{
+		if (msg.member.roles.cache.some(role => role.name === 'Conselho')) {
 
 
-}
+		}
 
 	}
 
