@@ -136,10 +136,8 @@ client.on('message', async msg => {
 					type=2
 					else
 					type=1
-					msg.channel.send(type);
-
 					var data = await get_unit_linkV3(matches['bestMatch']['target'],type);		
-					msg.channel(data.length)			
+					msg.channel.send(data.length)			
 					if(type>0)	{	
 					const Embed = new Discord.MessageEmbed()
 									.setColor('#0099ff')
