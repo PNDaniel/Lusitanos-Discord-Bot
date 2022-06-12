@@ -184,11 +184,11 @@ async function get_unit_link(name){
 
         if(element['Image Name'].includes(name)){
             if(element['Image Name'].includes('_img'))
-            link_img = get_image_url(element['Image ID'],1);
+             await get_image_url(element['Image ID'],1);
             if(element['Image Name'].includes('_vet'))
-            link_vet = get_image_url(element['Image ID'],2);
+             await get_image_url(element['Image ID'],2);
             if(element['Image Name'].includes('_doc'))
-            link_doc = get_image_url(element['Image ID'],3);
+             await get_image_url(element['Image ID'],3);
         }
     });
 });
