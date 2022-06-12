@@ -143,15 +143,13 @@ client.on('message', async msg => {
 
 					const Embed = new Discord.MessageEmbed()
 									.setColor('#0099ff')
-									.setURL('https://discord.js.org/')
 									.setTitle('Guide for '+"**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**")
 									.setDescription('Unit guide text can be implemented here!')
 									.setThumbnail(data[0])
-									.setImage([data[1],data[2]])
+									.setImage(data[1])
 					const Embed1 = new Discord.MessageEmbed()
 									.setColor('#0099ff')
-									.setURL('https://discord.js.org/')
-									.setDescription('Veterancy')
+									.setTitle('Veterancy')
 									.setThumbnail(data[0])
 									.setImage(data[2])
 
