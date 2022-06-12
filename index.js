@@ -39,7 +39,7 @@ client.on('message', async msg => {
 		axios.get("https://drive.google.com/uc?id=1e8j9GvtYrdf-qhNGJ-TAUi78YuPgi63A")
 		.then((response) => {
 			//image url : response.request.res.req._redirectable._currentUrl
-			const embed = new Discord.MessageEmbed().setTitle('Attachments').attachFiles([response.request.res.req._redirectable._currentUrl]);
+			const embed = new Discord.MessageEmbed().setTitle('Attachments').setImage(response.request.res.req._redirectable._currentUrl);
 			msg.channel.send(embed)
 			//msg.channel.send({
 		//		files: [response.request.res.req._redirectable._currentUrl]
