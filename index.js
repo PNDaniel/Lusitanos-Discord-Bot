@@ -191,11 +191,11 @@ async function get_unit_linkV3(name){
   get_ids.data.forEach(element => {
 	if(element['Image Name'].includes(name)){
 		if(element['Image Name'].includes('_img'))
-		id_img = await Promise.all([get_image_url(element['Image ID'])]);
+		id_img = element['Image ID'];
 		if(element['Image Name'].includes('_vet'))
-		id_vet = await Promise.all([get_image_url(element['Image ID'])]);
+		id_vet = element['Image ID']
 		if(element['Image Name'].includes('_doc'))
-		id_doc = await Promise.all([get_image_url(element['Image ID'])]);
+		id_doc = element['Image ID']
 
 	}
 });
