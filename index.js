@@ -132,6 +132,9 @@ client.on('message', async msg => {
 					msg.delete();
 					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 					var type=0;
+					msg.channel.send(files.includes(matches['bestMatch']['target']+"_doc.png"))
+					msg.channel.send(files.includes(matches['bestMatch']['target']+"_img.png"))
+					msg.channel.send(files.includes(matches['bestMatch']['target']+"_vet.png"))
 					if(files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png"))
 					type=2
 					else
