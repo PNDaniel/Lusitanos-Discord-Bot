@@ -134,7 +134,8 @@ client.on('message', async msg => {
 					//msg.channel.send({
 				//		files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
 			//		});
-			get_unit_linkV3(matches['bestMatch']['target']);
+			var [img, vet, doc] = get_unit_linkV3(matches['bestMatch']['target']);
+			console.log(img)
 			
 
 				} else {
@@ -182,7 +183,7 @@ async function get_unit_linkV3(name){
     var id_vet = null;
     var id_img = null;
     var id_doc = null;
-	return new Promise((resolve) => {
+
   const [get_ids] = await Promise.all([
     axios.get(`https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3`),
   ]);
@@ -206,8 +207,8 @@ const [link_img, link_vet, link_doc] = await Promise.all([
 	
   ]);
 
-  resolve(link_img.request.res.req._redirectable._currentUrl)
-});
+  return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl,link_doc.request.res.req._redirectable._currentUrl]
+
 
 }
 
