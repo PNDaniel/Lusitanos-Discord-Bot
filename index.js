@@ -115,7 +115,9 @@ client.on('message', async msg => {
 
 	if (msg.content.includes("/tropa=") || msg.content.includes("/tropas=")) {
 		var unit = msg.content.toLowerCase().replace("/tropa=", "").replace(" ", "_").replace("/tropas=", "")
-		var files = fs.readdirSync(path)
+
+
+		var files = await get_units()
 		var files_that_exist = [];
 
 		for (const file of files) {
@@ -126,6 +128,8 @@ client.on('message', async msg => {
 			unit = unit.substring(1);
 		}
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
+		
+		
 		try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
@@ -196,6 +200,21 @@ client.on('message', async msg => {
 
 
 	//usage get_unit_link("iron_reapers")
+
+	async function get_units(){
+
+		var names=[]
+
+		const [get_ids] = await Promise.all([
+			axios.get(`https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3`),
+		  ]);
+
+		  get_ids.data.forEach(element => {
+			names.push(element['Image Name'])
+		});
+
+		return names;
+	}
 
 async function get_unit_linkV3(name){
     var id_vet = null;
