@@ -187,7 +187,7 @@ async function get_unit_linkV3(name){
   const [get_ids] = await Promise.all([
     axios.get(`https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3`),
   ]);
-console.log(get_ids)
+
   get_ids.data.forEach(element => {
 	if(element['Image Name'].includes(name)){
 		if(element['Image Name'].includes('_img'))
@@ -201,9 +201,9 @@ console.log(get_ids)
 });
 
 const  [link_img, link_vet, link_doc] =  await Promise.all([
-    axios.get(`https://drive.google.com/uc?id=${id_img}`).then(function (response) { return response.request.res.req._redirectable._currentUrl}),
-    axios.get(`https://drive.google.com/uc?id=${id_vet}`).then(function (response) { return response.request.res.req._redirectable._currentUrl}),
-	axios.get(`https://drive.google.com/uc?id=${id_doc}`).then(function (response) { return response.request.res.req._redirectable._currentUrl})
+    axios.get(`https://drive.google.com/uc?id=${id_img}`),
+    axios.get(`https://drive.google.com/uc?id=${id_vet}`),
+	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
 	
   ])
 
