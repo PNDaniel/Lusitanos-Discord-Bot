@@ -182,7 +182,7 @@ async function get_unit_linkV3(name){
     var id_vet = null;
     var id_img = null;
     var id_doc = null;
-
+	return new Promise((resolve) => {
   const [get_ids] = await Promise.all([
     axios.get(`https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3`),
   ]);
@@ -203,12 +203,12 @@ const [link_img, link_vet, link_doc] = await Promise.all([
     axios.get(`https://drive.google.com/uc?id=${id_img}`),
     axios.get(`https://drive.google.com/uc?id=${id_vet}`),
 	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
+	
   ]);
 
+  resolve(link_img.request.res.req._redirectable._currentUrl)
+});
 
-console.log(link_img)
-console.log(link_vet)
-console.log(link_doc)
 }
 
 
