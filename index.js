@@ -136,6 +136,8 @@ client.on('message', async msg => {
 					type=2
 					else
 					type=1
+					msg.channel.send(type);
+
 					var data = await get_unit_linkV3(matches['bestMatch']['target'],type);					
 					if(type>0)	{	
 					const Embed = new Discord.MessageEmbed()
