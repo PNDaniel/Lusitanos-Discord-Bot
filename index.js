@@ -206,7 +206,7 @@ const [link_img, link_vet, link_doc] = await Promise.all([
 	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
   ]);
 
-console.log(link.request.res.req._redirectable._currentUrl)
+console.log(link_img.request.res.req._redirectable._currentUrl)
 }
 
 
