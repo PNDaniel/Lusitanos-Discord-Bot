@@ -178,14 +178,7 @@ client.on('message', async msg => {
 	}
 
 
-});
-
-
-
-
-
-
-
+	
 async function get_unit_link(name){
     var link_vet = null;
     var link_img = null;
@@ -232,6 +225,16 @@ async function get_image_url(id,type){
             });
         });
 }
+
+
+});
+
+
+
+
+
+
+
 
 
 
