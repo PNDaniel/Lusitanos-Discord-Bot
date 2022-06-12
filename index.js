@@ -10,6 +10,7 @@ const client = new Discord.Client();
 client.interaction = {}; //Creating interaction object
 const DiscordButtons = require('discord-buttons-v13'); //Requiring Discord-BUttons module.
 const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-Pages module.
+const { maxHeaderSize } = require('http');
 DiscordButtons(client);
 const path = './images'
 const purge_messages = 1000 * 60 * 10; //10 minutes
@@ -123,7 +124,7 @@ client.on('message', async msg => {
 			unit = unit.substring(1);
 		}
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
-		get_unit_link(matches)
+		
 		try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
@@ -134,6 +135,8 @@ client.on('message', async msg => {
 					msg.channel.send({
 						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
 					});
+					const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(get_unit_link(matches['bestMatch']['target'])[0]);
+					msg.channel.send(embed)
 				} else {
 					delete_all_expect_pin()
 					msg.delete();
