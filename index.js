@@ -110,7 +110,7 @@ client.on('message', async msg => {
 			}else{
 				delete_all_expect_pin()
 				msg.delete();
-				msg.channel.send("Mensagem será apagada às:  <t:"+Math.floor(Date.now()/1000000)+":R>")
+				msg.channel.send("Mensagem será apagada às:  <t:"+Math.floor(Date.now()/1000 + purge_messages/1000)+">")
 				msg.channel.send(matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_"," "));
 				msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`,`${path}/${matches['bestMatch']['target']}_vet.png`]});
 			}
