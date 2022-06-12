@@ -13,6 +13,8 @@ const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-
 DiscordButtons(client);
 const path = './images'
 const purge_messages = 10000;
+const ID_channel_to_delete = '984569178293940297';
+const ID_channel_request = '985278059001290753';
 
 
 client.on('ready' ,() => {
@@ -77,8 +79,8 @@ client.on('message', async msg => {
 			msg.delete();
 			msg.author.send("Update has been requested!")
 			msg.author.send({files: [ImageLink]})
-			client.channels.cache.get('985278059001290753').send(msg.author.username + " :\n\n\n" +msg.content.replace("/request=",""));
-			client.channels.cache.get('985278059001290753').send({files: [ImageLink]});
+			client.channels.cache.get(ID_channel_request).send(msg.author.username + " :\n\n\n" +msg.content.replace("/request=",""));
+			client.channels.cache.get(ID_channel_request).send({files: [ImageLink]});
 		});
 	 }
 
@@ -127,7 +129,7 @@ function delete_all_expect_pin()
     setTimeout(async function()
     {   const allMessages = await msg.channel.messages.fetch()
 		const deletable = allMessages.filter(message => !message.pinned)
-		await msg.channel.bulkDelete(deletable, true)
+		await client.channels.cache.get(ID_channel_to_delete).bulkDelete(deletable, true)
     },purge_messages);
 }
 
