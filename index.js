@@ -3,7 +3,7 @@ const { Client, Intents } = require('discord.js');
 const axios = require('axios').default;
 const fs = require('fs')
 var stringSimilarity = require('string-similarity');
-require('deploy-coomands.js');
+require('deploy-commands.js');
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 //https://lh3.googleusercontent.com/d/ID    redirect google images
