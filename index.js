@@ -126,7 +126,7 @@ client.on('message', async msg => {
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
 		console.log(get_unit_link(matches['bestMatch']['target']))
 
-		await Promise.all([get_unit_link(matches['bestMatch']['target'])]);
+		get_unit_link(matches['bestMatch']['target'])
 		try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
@@ -190,6 +190,7 @@ async function get_unit_link(name){
 
 	//const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(response.request.res.req._redirectable._currentUrl);
 	//msg.channel.send(embed)
+	
 
     response.data.forEach(element => {
 
