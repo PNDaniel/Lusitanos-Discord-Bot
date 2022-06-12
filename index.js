@@ -118,12 +118,9 @@ client.on('message', async msg => {
 
 
 		var files = await get_units()
-		console.log(files)
 		var files_that_exist = [];
-
 		for (const file of files) {
 			files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
-
 		}
 		while (unit.charAt(0) === '_') {
 			unit = unit.substring(1);
@@ -132,19 +129,11 @@ client.on('message', async msg => {
 		
 		
 		try {
-			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
-				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
 					delete_all_expect_pin()
 					msg.delete();
 					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-					//msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
-					//msg.channel.send({
-				//		files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
-			//		});
 
-					var data = await get_unit_linkV3(matches['bestMatch']['target']);
-
-					
+					var data = await get_unit_linkV3(matches['bestMatch']['target']);					
 
 					const Embed = new Discord.MessageEmbed()
 									.setColor('#0099ff')
@@ -152,27 +141,13 @@ client.on('message', async msg => {
 									.setDescription('Unit guide text can be implemented here!')
 									.setThumbnail(data[0])
 									.setImage(data[1])
-					const Embed1 = new Discord.MessageEmbed()
-									.setColor('#0099ff')
-									.setImage(data[2])
-
 					msg.channel.send(Embed);
+					if(files.includes(matches['bestMatch']['target']+"_doc.png"))	{			
+					const Embed1 = new Discord.MessageEmbed().setColor('#0099ff').setImage(data[2])
 					msg.channel.send(Embed1);
+					}
 
-			
 
-				} else {
-					delete_all_expect_pin()
-					msg.delete();
-					msg.channel.send(`Mensagem será apagada às:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
-					msg.channel.send({
-						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`]
-					});
-				}
-			} else {
-				msg.channel.send("Não existe uma unidade com esse nome");
-			}
 		} catch (err) {
 			console.error(err)
 		}
