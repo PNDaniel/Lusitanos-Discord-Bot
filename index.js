@@ -121,9 +121,9 @@ client.on('message', async msg => {
 
 
 
-async function delete_all_expect_pin()
+function delete_all_expect_pin()
 {
-    setTimeout(function()
+    setTimeout(async function()
     {
 		const allMessages = await msg.channel.messages.fetch()
 		const deletable = allMessages.filter(message => !message.pinned)
