@@ -116,7 +116,6 @@ client.on('message', async msg => {
 	if (msg.content.includes("/tropa=") || msg.content.includes("/tropas=")) {
 		var unit = msg.content.toLowerCase().replace("/tropa=", "").replace(" ", "_").replace("/tropas=", "")
 
-
 		var files = await get_units()
 		var files_that_exist = [];
 		for (const file of files) {
@@ -133,7 +132,7 @@ client.on('message', async msg => {
 					msg.delete();
 					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 
-					
+					var type = 0
 					if(files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png") && files.includes(matches['bestMatch']['target']+"_img.png"))
 					type=2
 					else if(!files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png") && files.includes(matches['bestMatch']['target']+"_img.png"))
