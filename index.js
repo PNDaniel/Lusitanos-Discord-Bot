@@ -211,44 +211,6 @@ console.log(link_img.request.res.req._redirectable._currentUrl)
 
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-async function get_unit_link(name){
-    var link_vet = null;
-    var link_img = null;
-    var link_doc = null;
-    return new Promise((resolve) => {
- axios.get("https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3")
-.then((response) => {
-    response.data.forEach(element => {
-        if(element['Image Name'].includes(name)){
-            if(element['Image Name'].includes('_img'))
-            link_img = await Promise.all([get_image_url(element['Image ID'])]);
-            if(element['Image Name'].includes('_vet'))
-			link_vet = await Promise.all([get_image_url(element['Image ID'])]);
-            if(element['Image Name'].includes('_doc'))
-			link_doc = await Promise.all([get_image_url(element['Image ID'])]);
-
-        }
-    });
-});
-resolve(link_img, link_vet, link_doc)
-});
-
-}
 async function get_image_url(id){
     return new Promise((resolve) => {
      axios.get("https://drive.google.com/uc?id="+id).then((response) => {
