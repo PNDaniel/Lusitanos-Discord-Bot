@@ -38,9 +38,9 @@ client.on('message', async msg => {
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 		axios.get("https://drive.google.com/uc?id=1e8j9GvtYrdf-qhNGJ-TAUi78YuPgi63A")
 		.then((response) => {
-			console.log(response.request.res.req._redirectable._currentUrl)
+			//image url : response.request.res.req._redirectable._currentUrl
 			const embed = new Discord.MessageEmbed().setTitle('Attachments').attachFiles([response.request.res.req._redirectable._currentUrl]);
-			channel.send(embed)
+			msg.channel.send(embed)
 			msg.channel.send({
 				files: [response.request.res.req._redirectable._currentUrl]
 			});
