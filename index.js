@@ -38,7 +38,7 @@ const TWCity1 = ["marraquexe", "kiralvfalva", "gyoma", "mehkerek", "hadur varus"
 const TWValleyFortress = ['vaja', 'ratot var']
 const TWVillage3 = ['ruda', 'sovica', 'csorna', ' delretek', 'tavasz', 'bejarat', 'kistemplom', 'vaseke']
 
-client.on('message', async msg => {
+client.on('messageCreate', async msg => {
 
 	if (TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")) {
 		msg.delete();
