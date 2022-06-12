@@ -180,6 +180,88 @@ client.on('message', async msg => {
 
 });
 
+
+
+
+
+
+
+async function get_unit_link(name){
+    var link_vet = null;
+    var link_img = null;
+    var link_doc = null;
+    return new Promise((resolve, reject) => {
+ axios.get("https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3")
+.then((response) => {
+	//image url : response.request.res.req._redirectable._currentUrl
+
+	//const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(response.request.res.req._redirectable._currentUrl);
+	//msg.channel.send(embed)
+
+    response.data.forEach(element => {
+
+        if(element['Image Name'].includes(name)){
+            if(element['Image Name'].includes('_img'))
+            link_img = get_image_url(element['Image ID'],1);
+            if(element['Image Name'].includes('_vet'))
+            link_vet = get_image_url(element['Image ID']),2;
+            if(element['Image Name'].includes('_doc'))
+            link_doc = get_image_url(element['Image ID'],3);
+
+        }
+
+
+    });
+});
+});
+
+}
+async function get_image_url(id,type){
+    return new Promise((resolve, reject) => {
+     axios.get("https://drive.google.com/uc?id="+id).then((response) => {
+        //console.log(response.request.res.req._redirectable._currentUrl)
+		var title = ""
+		if(type==1)
+		title = "Unit"
+		if(type==2)
+		title = "Veterancy"
+		if(type==3)
+		title = "Doctrine"
+		var embed = new Discord.MessageEmbed().setTitle(title).setImage(resolve(link_img=response.request.res.req._redirectable._currentUrl));
+					msg.channel.send(embed) 
+            });
+        });
+}
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 async function get_google_sheets(nome) {
 	return new Promise((resolve, reject) => {
 		var currentDate = new Date();
@@ -211,54 +293,6 @@ async function get_google_sheets(nome) {
 
 			});
 	})
-}
-
-async function get_unit_link(name){
-    var link_vet = null;
-    var link_img = null;
-    var link_doc = null;
-    return new Promise((resolve, reject) => {
- axios.get("https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3")
-.then((response) => {
-	//image url : response.request.res.req._redirectable._currentUrl
-
-	//const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(response.request.res.req._redirectable._currentUrl);
-	//msg.channel.send(embed)
-
-    response.data.forEach(element => {
-
-        if(element['Image Name'].includes(name)){
-            if(element['Image Name'].includes('_img'))
-            link_img = get_image_url(element['Image ID']);
-            if(element['Image Name'].includes('_vet'))
-            link_vet = get_image_url(element['Image ID']);
-            if(element['Image Name'].includes('_doc'))
-            link_doc = get_image_url(element['Image ID']);
-
-        }
-
-
-    });
-    resolve(link_img,link_vet,link_doc)
-});
-});
-
-}
-async function get_image_url(id,type){
-    return new Promise((resolve, reject) => {
-     axios.get("https://drive.google.com/uc?id="+id).then((response) => {
-        //console.log(response.request.res.req._redirectable._currentUrl)
-		var title = ""
-		if(type==1)
-		title = "Unit"
-		if(type==2)
-		title = "Veterancy"
-		if(type==3)
-		title = "Doctrine"
-		var embed = new Discord.MessageEmbed().setTitle(title).setImage(resolve(link_img=response.request.res.req._redirectable._currentUrl));
-					msg.channel.send(embed) 
-            });
-        });
 }
 
 client.login(process.env.TOKEN);
