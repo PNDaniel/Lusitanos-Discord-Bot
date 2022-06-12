@@ -128,33 +128,22 @@ client.on('message', async msg => {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
 					delete_all_expect_pin()
+					msg.delete();
 					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");		
-					const Embed = new Discord.MessageEmbed()
-					.setColor('#0099ff')
-					.setTitle('Guide for '+"**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**")
-					.setDescription('Unit guide text can be implemented here!')
-					.setThumbnail(`${path}/${matches['bestMatch']['target']}_img.png`)
-					.setImage(`${path}/${matches['bestMatch']['target']}_vet.png`)
-					msg.channel.send(Embed);
- 
-					const Embed1 = new Discord.MessageEmbed()
-					.setColor('#0099ff')
-					.setThumbnail(`${path}/${matches['bestMatch']['target']}_img.png`)
-					.setImage(`${path}/${matches['bestMatch']['target']}_doc.png`)
-					msg.channel.send(Embed1);
+					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
+					msg.channel.send({
+						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
+					});
+					const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(get_unit_link(matches['bestMatch']['target'])[0]);
+					msg.channel.send(embed)
 				} else {
 					delete_all_expect_pin()
 					msg.delete();
-					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");		
-					const Embed = new Discord.MessageEmbed()
-					.setColor('#0099ff')
-					.setTitle('Guide for '+"**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**")
-					.setDescription('Unit guide text can be implemented here!')
-					.setThumbnail(`${path}/${matches['bestMatch']['target']}_img.png`)
-					.setImage(`${path}/${matches['bestMatch']['target']}_vet.png`)
-					msg.channel.send(Embed);
+					msg.channel.send(`Mensagem será apagada às:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
+					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
+					msg.channel.send({
+						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`]
+					});
 				}
 			} else {
 				msg.channel.send("Não existe uma unidade com esse nome");
@@ -220,5 +209,7 @@ async function get_google_sheets(nome) {
 			});
 	})
 }
+
+
 
 client.login(process.env.TOKEN);
