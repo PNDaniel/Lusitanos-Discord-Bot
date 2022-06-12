@@ -12,6 +12,7 @@ const DiscordButtons = require('discord-buttons-v13'); //Requiring Discord-BUtto
 const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-Pages module.
 DiscordButtons(client);
 const path = './images'
+const purge_messages = 10000;
 
 
 client.on('ready' ,() => {
@@ -127,7 +128,7 @@ async function delete_all_expect_pin()
 		const allMessages = await msg.channel.messages.fetch()
 		const deletable = allMessages.filter(message => !message.pinned)
 		await msg.channel.bulkDelete(deletable, true)
-    },10000);
+    },purge_messages);
 }
 
 
