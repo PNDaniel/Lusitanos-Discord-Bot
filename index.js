@@ -123,6 +123,7 @@ client.on('message', async msg => {
 			unit = unit.substring(1);
 		}
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
+		get_unit_link(matches)
 		try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
@@ -207,5 +208,44 @@ async function get_google_sheets(nome) {
 	})
 }
 
+async function get_unit_link(name){
+    var link_vet = null;
+    var link_img = null;
+    var link_doc = null;
+    return new Promise((resolve, reject) => {
+ axios.get("https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3")
+.then((response) => {
+	//image url : response.request.res.req._redirectable._currentUrl
+
+	//const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(response.request.res.req._redirectable._currentUrl);
+	//msg.channel.send(embed)
+
+    response.data.forEach(element => {
+
+        if(element['Image Name'].includes(name)){
+            if(element['Image Name'].includes('_img'))
+            link_img = get_image_url(element['Image ID']);
+            if(element['Image Name'].includes('_vet'))
+            link_vet = get_image_url(element['Image ID']);
+            if(element['Image Name'].includes('_doc'))
+            link_doc = get_image_url(element['Image ID']);
+
+        }
+
+
+    });
+    resolve(link_img,link_vet,link_doc)
+});
+});
+
+}
+async function get_image_url(id){
+    return new Promise((resolve, reject) => {
+     axios.get("https://drive.google.com/uc?id="+id).then((response) => {
+        console.log(response.request.res.req._redirectable._currentUrl)
+                resolve(link_img=response.request.res.req._redirectable._currentUrl)
+            });
+        });
+}
 
 client.login(process.env.TOKEN);
