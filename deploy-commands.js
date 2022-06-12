@@ -9,7 +9,7 @@ const commands = [
 	new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
 ]
 	.map(command => command.toJSON());
-
+ 
 const rest = new REST({ version: '9' }).setToken(process.env.TOKEN);
 
 rest.put(Routes.applicationGuildCommands(clientId, guildId), { body: commands })
