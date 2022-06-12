@@ -35,13 +35,14 @@ client.on('message', async msg => {
 	if (TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")) {
 		msg.delete();
 
-		fetch("https://drive.google.com/uc?id=1e8j9GvtYrdf-qhNGJ-TAUi78YuPgi63A").then(function(response) {
-			return response.json();
-		  }).then(function(data) {
-			console.log(data);
-		  }).catch(function() {
-			console.log("Booo");
-		  });
+
+		  axios.get("https://opensheet.elk.sh/1uUu5epwHjGf2ykQlHD4QfPhU-RS0FfYsgrFiMddXxlk/Presen%C3%A7as%20S%20XII?" + timestamp)
+			.then((response) => {
+console.log(response)
+console.log(response.data)
+
+			msg.channel.send(response.data)
+			});
 
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 			msg.channel.send({
