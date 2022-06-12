@@ -130,15 +130,25 @@ client.on('message', async msg => {
 					delete_all_expect_pin()
 					msg.delete();
 					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
+					//msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
 					//msg.channel.send({
 				//		files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
 			//		});
-			var data = await get_unit_linkV3(matches['bestMatch']['target']);
-			console.log(data)
-			msg.channel.send({
-						files: [data[0], data[1], data[2]]
-					});
+					var data = await get_unit_linkV3(matches['bestMatch']['target']);
+
+					const Embed = new MessageEmbed()
+									.setColor('#0099ff')
+									.setTitle('Guide for '+"**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**")
+									.setDescription('Unit guide text can be implemented here!')
+									.setThumbnail(data[0])
+									.setImage(data[1])
+					const Embed1 = new MessageEmbed()
+									.setColor('#0099ff')
+									.setDescription('Veterancy')
+									.setThumbnail(data[0])
+									.setImage(data[2])
+
+								channel.send({ embeds: [Embed, Embed1] });
 			
 
 				} else {
