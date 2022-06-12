@@ -134,7 +134,7 @@ client.on('message', async msg => {
 					//msg.channel.send({
 				//		files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
 			//		});
-			var a = await Promise.all([get_unit_link(matches['bestMatch']['target'])]);
+			var a = await Promise.all([get_unit_linkV3(matches['bestMatch']['target'])]);
 			console.log(a)	
 
 				} else {
@@ -177,29 +177,63 @@ client.on('message', async msg => {
 
 
 	//usage get_unit_link("iron_reapers")
+
+async function get_unit_linkV3(name){
+    var id_vet = null;
+    var id_img = null;
+    var id_doc = null;
+	return new Promise((resolve) => {
+  // Make first two requests
+  const [get_ids] = await Promise.all([
+    axios.get(`https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3`),
+  ]);
+
+  get_ids.data.forEach(element => {
+	if(element['Image Name'].includes(name)){
+		if(element['Image Name'].includes('_img'))
+		id_img = await Promise.all([get_image_url(element['Image ID'])]);
+		if(element['Image Name'].includes('_vet'))
+		id_vet = await Promise.all([get_image_url(element['Image ID'])]);
+		if(element['Image Name'].includes('_doc'))
+		id_doc = await Promise.all([get_image_url(element['Image ID'])]);
+
+	}
+});
+
+const [link_img, link_vet, link_doc] = await Promise.all([
+    axios.get(`https://drive.google.com/uc?id=${id_img}`),
+    axios.get(`https://drive.google.com/uc?id=${id_vet}`),
+	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
+  ]);
+
+resolve(link_img.request.res.req._redirectable._currentUrl, link_vet.request.res.req._redirectable._currentUrl,link_doc.request.res.req._redirectable._currentUrl)
+	});
+}
+
 async function get_unit_link(name){
     var link_vet = null;
     var link_img = null;
     var link_doc = null;
-    return new Promise((resolve, reject) => {
+    return new Promise((resolve) => {
  axios.get("https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3")
 .then((response) => {
     response.data.forEach(element => {
         if(element['Image Name'].includes(name)){
             if(element['Image Name'].includes('_img'))
-            link_img = await Promise.all([get_image_url(element['Image ID'],1)]);
+            link_img = await Promise.all([get_image_url(element['Image ID'])]);
             if(element['Image Name'].includes('_vet'))
-			link_vet = await Promise.all([get_image_url(element['Image ID'],2)]);
+			link_vet = await Promise.all([get_image_url(element['Image ID'])]);
             if(element['Image Name'].includes('_doc'))
-			link_doc = await Promise.all([get_image_url(element['Image ID'],3)]);
+			link_doc = await Promise.all([get_image_url(element['Image ID'])]);
 
         }
     });
 });
+resolve(link_img, link_vet, link_doc)
 });
 
 }
-async function get_image_url(id,type){
+async function get_image_url(id){
     return new Promise((resolve) => {
      axios.get("https://drive.google.com/uc?id="+id).then((response) => {
         //console.log(response.request.res.req._redirectable._currentUrl)
