@@ -35,8 +35,11 @@ client.on('message', async msg => {
 
 	const exampleEmbed = new Discord.MessageEmbed()
 	.setTitle('Some title')
-	.attachFiles([`${path}/archer_militia_img.png`])
-	.setImage(`attachment://${path}/archer_militia_img.png`);
+	.setColor('#0099ff')
+	.setDescription('Some description here')
+	.attachFiles([`${path}/archer_militia_img.png`,`${path}/archer_militia_ver.png`])
+	.setImage(`attachment://${path}/archer_militia_img.png`)
+	.setThumbnail(`attachment://${path}/archer_militia_vet.png`);
 
 	msg.channel.send(exampleEmbed);
 }
