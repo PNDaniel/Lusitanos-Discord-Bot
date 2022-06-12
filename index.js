@@ -175,7 +175,7 @@ client.on('message', async msg => {
 	}
 
 
-	
+	//usage get_unit_link("iron_reapers")
 async function get_unit_link(name){
     var link_vet = null;
     var link_img = null;
