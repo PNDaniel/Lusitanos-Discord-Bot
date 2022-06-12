@@ -135,7 +135,7 @@ client.on('message', async msg => {
 				//		files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
 			//		});
 			var data = get_unit_linkV3(matches['bestMatch']['target']);
-			console.log(data[0])
+			console.log(data[0].request.res.req._redirectable._currentUr)
 			
 
 				} else {
@@ -200,14 +200,14 @@ async function get_unit_linkV3(name){
 	}
 });
 
-const [link_img, link_vet, link_doc] = await Promise.all([
+return  [link_img, link_vet, link_doc] =  await Promise.all([
     axios.get(`https://drive.google.com/uc?id=${id_img}`),
     axios.get(`https://drive.google.com/uc?id=${id_vet}`),
 	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
 	
   ]);
 
-  return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl,link_doc.request.res.req._redirectable._currentUrl]
+  //return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl,link_doc.request.res.req._redirectable._currentUrl]
 
 
 }
@@ -215,41 +215,6 @@ const [link_img, link_vet, link_doc] = await Promise.all([
 
 
 
-/*
-async function get_unit_link(name){
-    var link_vet = null;
-    var link_img = null;
-    var link_doc = null;
-    return new Promise((resolve) => {
- axios.get("https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3")
-.then((response) => {
-    response.data.forEach(element => {
-        if(element['Image Name'].includes(name)){
-            if(element['Image Name'].includes('_img'))
-            link_img = await Promise.all([get_image_url(element['Image ID'])]);
-            if(element['Image Name'].includes('_vet'))
-			link_vet = await Promise.all([get_image_url(element['Image ID'])]);
-            if(element['Image Name'].includes('_doc'))
-			link_doc = await Promise.all([get_image_url(element['Image ID'])]);
-
-        }
-    });
-});
-resolve(link_img, link_vet, link_doc)
-});
-}
-*/
-
-
-
-async function get_image_url(id){
-    return new Promise((resolve) => {
-     axios.get("https://drive.google.com/uc?id="+id).then((response) => {
-        //console.log(response.request.res.req._redirectable._currentUrl)
-			resolve(response.request.res.req._redirectable._currentUrl)
-            });
-        });
-}
 });
 
 
