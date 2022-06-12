@@ -23,45 +23,10 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'tropa=') {
-		var unit = msg.content.toLowerCase().replace("/tropa=", "").replace(" ", "_").replace("/tropas=", "")
-		var files = fs.readdirSync(path)
-		var files_that_exist = [];
-
-		for (const file of files) {
-			files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
-
-		}
-		while (unit.charAt(0) === '_') {
-			unit = unit.substring(1);
-		}
-		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
-		try {
-			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
-				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
-					delete_all_expect_pin()
-					channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-					channel.send("** Guia para " + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
-					channel.send({
-						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
-					});
-
-
-				} else {
-					delete_all_expect_pin()
-					channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-					channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
-					channel.send({
-						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`]
-					});
-				}
-			} else {
-				channel.send("Não existe uma unidade com esse nome");
-			}
-		} catch (err) {
-			console.error(err)
-		}
-	} else if (commandName === 'request=') {
+	if (commandName === 'ping') {
+		const message = interaction.options.data
+		await interaction.reply(message);
+	} else if (commandName === 'server') {
 		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
 	} else if (commandName === 'user') {
 		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
