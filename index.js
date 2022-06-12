@@ -230,7 +230,7 @@ const  [link_img, link_vet, link_doc] =  await Promise.all([
   return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl,link_doc.request.res.req._redirectable._currentUrl]
 
 }else{
-	const  [link_img, link_vet, link_doc] =  await Promise.all([
+	const  [link_img, link_vet] =  await Promise.all([
 		axios.get(`https://drive.google.com/uc?id=${id_img}`),
 		axios.get(`https://drive.google.com/uc?id=${id_vet}`)
 	  ])
