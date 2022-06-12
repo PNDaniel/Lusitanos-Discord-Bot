@@ -120,7 +120,7 @@ client.on('message', async msg => {
 		var files_that_exist = [];
 		for (const file of files) {
 			if(!file.includes("_vet.png") || !file.includes("_doc.png"))
-			files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
+			files_that_exist.push(file.replace("vet.png", "").replace("img.png", "").replace("doc.png", "").replace("_", " "))
 		}
 		while (unit.charAt(0) === '_') {
 			unit = unit.substring(1);
