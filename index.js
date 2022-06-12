@@ -4,6 +4,8 @@ const axios = require('axios').default;
 const fs = require('fs')
 var stringSimilarity = require('string-similarity');
 const schedule = require("node-schedule");
+const { MessageEmbed } = require('discord.js');
+
 
 const client = new Discord.Client();
 //https://lh3.googleusercontent.com/d/ID    redirect google images
