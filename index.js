@@ -145,15 +145,15 @@ client.on('message', async msg => {
 									.setColor('#0099ff')
 									.setTitle('Guide for '+"**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**")
 									.setDescription('Unit guide text can be implemented here!')
-									.setThumbnail(data[0])
+									//.setThumbnail(data[0])
 									.setImage(data[1])
 					const Embed1 = new MessageEmbed()
 									.setColor('#0099ff')
 									.setDescription('Veterancy')
-									.setThumbnail(data[0])
+									//.setThumbnail(data[0])
 									.setImage(data[2])
 
-								msg.channel.send({ embeds: [Embed, Embed1] });
+					msg.channel.send({ embeds: [Embed, Embed1] });
 			
 
 				} else {
