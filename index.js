@@ -3,14 +3,15 @@ const Discord = require('discord.js');
 const axios = require('axios').default;
 const fs = require('fs')
 var stringSimilarity = require('string-similarity');
-const schedule = require("node-schedule");
 
 const client = new Discord.Client();
 //https://lh3.googleusercontent.com/d/ID    redirect google images
 client.interaction = {}; //Creating interaction object
-const DiscordButtons = require('discord-buttons-v13'); //Requiring Discord-BUttons module.
+const DiscordButtons = require('discord-buttons-v12'); //Requiring Discord-BUttons module.
 const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-Pages module.
-const { maxHeaderSize } = require('http');
+const {createPages} = require('discord-buttons-page');
+
+
 DiscordButtons(client);
 const path = './images'
 const purge_messages = 1000 * 60 * 10; //10 minutes
@@ -37,21 +38,20 @@ client.on('message', async msg => {
 		msg.delete();
 
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
-		axios.get("https://drive.google.com/uc?id=1e8j9GvtYrdf-qhNGJ-TAUi78YuPgi63A")
-		.then((response) => {
-			//image url : response.request.res.req._redirectable._currentUrl
-			let embeded = []
-			const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(response.request.res.req._redirectable._currentUrl);
-			embeded.push(embed)
-			const embed1 = new Discord.MessageEmbed().setTitle('unit').setImage(response.request.res.req._redirectable._currentUrl);
-			embeded.push(embed1)
-			msg.channel.send(embeded)
+{
 
-			//msg.channel.send({
-		//		files: [response.request.res.req._redirectable._currentUrl]
-	//		});
+    let embed1 = new Discord.MessageEmbed()
+    .setTitle('Exemple 1');
 
-		});
+    let embed2 = new Discord.MessageEmbed()
+    .setTitle('Exemple 2');
+
+    const embeds = [embed1, embed2];
+    /*With Discord.js V12*/ const ButtonStyle = "red"; // Or green, blurple, gray.
+    const msg_delete = "!help for help command !"; // Défault : The embeds pages is closed !
+
+    createPages(bot, message, embeds, ButtonStyle, msg_delete);
+}
 
 	}
 
