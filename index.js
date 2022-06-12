@@ -124,7 +124,7 @@ client.on('message', async msg => {
 			unit = unit.substring(1);
 		}
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
-		
+		console.log(get_unit_link(matches['bestMatch']['target'])[0])
 		try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
@@ -245,7 +245,7 @@ async function get_unit_link(name){
 async function get_image_url(id){
     return new Promise((resolve, reject) => {
      axios.get("https://drive.google.com/uc?id="+id).then((response) => {
-        console.log(response.request.res.req._redirectable._currentUrl)
+        //console.log(response.request.res.req._redirectable._currentUrl)
                 resolve(link_img=response.request.res.req._redirectable._currentUrl)
             });
         });
