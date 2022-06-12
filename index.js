@@ -149,8 +149,6 @@ client.on('message', async msg => {
 									.setImage(data[1])
 					const Embed1 = new Discord.MessageEmbed()
 									.setColor('#0099ff')
-									.setTitle('Veterancy')
-									.setThumbnail(data[0])
 									.setImage(data[2])
 
 					msg.channel.send(Embed);
