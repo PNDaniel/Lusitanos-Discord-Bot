@@ -37,7 +37,7 @@ client.on('message', async msg => {
 	.setTitle('Some title')
 	.setColor('#0099ff')
 	.setDescription('Some description here')
-	.attachFiles([`${path}/archer_militia_img.png`,`${path}/archer_militia_ver.png`])
+	.attachFiles([`${path}/archer_militia_img.png`,`${path}/archer_militia_vet.png`])
 	.setImage(`attachment://${path}/archer_militia_img.png`)
 	.setThumbnail(`attachment://${path}/archer_militia_vet.png`);
 
