@@ -23,10 +23,10 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'tropa=') {
+	if (commandName === 'tropa') {
 		const message = interaction.options.data
 		await interaction.reply(message);
-	} else if (commandName === 'request=') {
+	} else if (commandName === 'request') {
 		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
 	} else if (commandName === 'user') {
 		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
