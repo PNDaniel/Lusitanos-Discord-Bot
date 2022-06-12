@@ -125,6 +125,9 @@ client.on('message', async msg => {
 		}
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
 		console.log(get_unit_link(matches['bestMatch']['target']))
+
+		const [a] = await Promise.all([get_unit_link(matches['bestMatch']['target'])]);
+		console.log(a)
 		try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
