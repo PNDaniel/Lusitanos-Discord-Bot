@@ -136,6 +136,7 @@ client.on('message', async msg => {
 					//msg.channel.send({
 				//		files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
 			//		});
+					while(data[0].length==0)
 					var data = await get_unit_linkV3(matches['bestMatch']['target']);
 
 					console.log(data[0])
