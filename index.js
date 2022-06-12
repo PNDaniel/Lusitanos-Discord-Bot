@@ -132,13 +132,11 @@ client.on('message', async msg => {
 					delete_all_expect_pin()
 					msg.delete();
 					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-					var type=0;
-					msg.channel.send(files.includes(matches['bestMatch']['target']+"_doc.png"))
-					msg.channel.send(files.includes(matches['bestMatch']['target']+"_img.png"))
-					msg.channel.send(files.includes(matches['bestMatch']['target']+"_vet.png"))
-					if(files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png"))
+
+					
+					if(files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png") && files.includes(matches['bestMatch']['target']+"_img.png"))
 					type=2
-					else
+					else if(!files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png") && files.includes(matches['bestMatch']['target']+"_img.png"))
 					type=1
 
 					var data = await get_unit_linkV3(matches['bestMatch']['target'],type);		
@@ -223,7 +221,6 @@ async function get_unit_linkV3(name,type){
 
 	}
 });
-msg.channel.send(1+":tyoe:" + type)			
 
 if(type==2){
 const  [link_img, link_vet, link_doc] =  await Promise.all([
@@ -232,7 +229,6 @@ const  [link_img, link_vet, link_doc] =  await Promise.all([
 	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
 	
   ])
-  msg.channel.send(2)			
 
   return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl,link_doc.request.res.req._redirectable._currentUrl]
 
