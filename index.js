@@ -118,6 +118,7 @@ client.on('message', async msg => {
 
 
 		var files = await get_units()
+		console.log(files)
 		var files_that_exist = [];
 
 		for (const file of files) {
