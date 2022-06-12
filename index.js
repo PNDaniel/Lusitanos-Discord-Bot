@@ -38,7 +38,7 @@ client.on('message', async msg => {
 
 		  axios.get("https://drive.google.com/uc?id=1e8j9GvtYrdf-qhNGJ-TAUi78YuPgi63A")
 			.then((response) => {
-				console.log(response)
+				console.log(response['responseUrl'])
 
 			});
 
