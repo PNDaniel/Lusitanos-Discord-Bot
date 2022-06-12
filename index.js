@@ -6,11 +6,7 @@ var stringSimilarity = require('string-similarity');
 
 const client = new Discord.Client();
 //https://lh3.googleusercontent.com/d/ID    redirect google images
-client.interaction = {}; //Creating interaction object
-const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-Pages module.
 
-
-DiscordButtons(client);
 const path = './images'
 const purge_messages = 1000 * 60 * 10; //10 minutes
 const ID_channel_to_delete = '985345694447579206';
@@ -21,9 +17,8 @@ client.on('ready', () => {
 	console.log(`Logged in as ${client.user.tag}!`);
 });
 
-client.on('clickButton', (button) => {
-	ButtonPages.buttonInteractions(button, client.interaction);
-});
+
+
 // private message:  msg.author.send("Your message here.")
 
 const TWCity1 = ["marraquexe", "kiralvfalva", "gyoma", "mehkerek", "hadur varus", "ovarus", "horka", "heviz", "feheloval", "rozsdaskaszat", "hosvarosa", " kisber", "tura", "hatvan"]
