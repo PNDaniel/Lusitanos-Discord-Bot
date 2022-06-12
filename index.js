@@ -36,7 +36,7 @@ client.on('message', async msg => {
 		msg.delete();
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 			msg.channel.send({
-				files: ["https://docs.google.com/uc?export=download&id=1e8j9GvtYrdf-qhNGJ-TAUi78YuPgi63A"]
+				files: ["https://drive.google.com/uc?id=1GwjoPKTzUrHmnIomg1uhuGhwV-Y6ArQU"]
 			});
 	}
 
