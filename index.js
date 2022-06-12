@@ -182,7 +182,7 @@ async function get_unit_linkV3(name){
     var id_vet = null;
     var id_img = null;
     var id_doc = null;
-
+console.log(1)
 
   const [get_ids] = await Promise.all([
     axios.get(`https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3`),
@@ -199,15 +199,44 @@ async function get_unit_linkV3(name){
 
 	}
 });
-
+console.log(2)
 const [link_img, link_vet, link_doc] = await Promise.all([
     axios.get(`https://drive.google.com/uc?id=${id_img}`),
     axios.get(`https://drive.google.com/uc?id=${id_vet}`),
 	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
   ]);
-
+  console.log(3)
+  
 console.log(link_img.request.res.req._redirectable._currentUrl)
 }
+
+
+
+
+/*
+async function get_unit_link(name){
+    var link_vet = null;
+    var link_img = null;
+    var link_doc = null;
+    return new Promise((resolve) => {
+ axios.get("https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3")
+.then((response) => {
+    response.data.forEach(element => {
+        if(element['Image Name'].includes(name)){
+            if(element['Image Name'].includes('_img'))
+            link_img = await Promise.all([get_image_url(element['Image ID'])]);
+            if(element['Image Name'].includes('_vet'))
+			link_vet = await Promise.all([get_image_url(element['Image ID'])]);
+            if(element['Image Name'].includes('_doc'))
+			link_doc = await Promise.all([get_image_url(element['Image ID'])]);
+
+        }
+    });
+});
+resolve(link_img, link_vet, link_doc)
+});
+}
+*/
 
 
 
