@@ -148,6 +148,7 @@ client.on('message', async msg => {
 									.setDescription('Unit guide text can be implemented here!')
 									.setThumbnail(data[0])
 									.setImage(data[1])
+									.attachFiles([data[2]])
 					const Embed1 = new Discord.MessageEmbed()
 									.setColor('#0099ff')
 									.setURL('https://discord.js.org/')
