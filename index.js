@@ -40,9 +40,10 @@ client.on('message', async msg => {
 		.then((response) => {
 			//image url : response.request.res.req._redirectable._currentUrl
 			let embeded = []
-			const embed = new Discord.MessageEmbed().setTitle('Attachments').setImage(response.request.res.req._redirectable._currentUrl);
+			const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(response.request.res.req._redirectable._currentUrl);
 			embeded.push(embed)
-			embeded.push(embed)
+			const embed1 = new Discord.MessageEmbed().setTitle('unit').setImage(response.request.res.req._redirectable._currentUrl);
+			embeded.push(embed1)
 			msg.channel.send(embeded)
 
 			//msg.channel.send({
