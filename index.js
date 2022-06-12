@@ -42,7 +42,7 @@ client.on('message', async msg => {
 			//const embed = new Discord.MessageEmbed().setTitle('Attachments').setImage(response.request.res.req._redirectable._currentUrl);
 			//sg.channel.send(embed)
 
-
+			let embeds = [];
 			embeds.push(new Discord.RichEmbed()
 			.setTitle('Unit')
 			.setImage(response.request.res.req._redirectable._currentUrl)
