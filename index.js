@@ -136,6 +136,9 @@ client.on('message', async msg => {
 			//		});
 			var data = await get_unit_linkV3(matches['bestMatch']['target']);
 			console.log(data)
+			msg.channel.send({
+						files: [data[0], data[1], data[2]]
+					});
 			
 
 				} else {
