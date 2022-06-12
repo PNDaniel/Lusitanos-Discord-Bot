@@ -112,12 +112,16 @@ client.on('message', async msg => {
 					delete_all_expect_pin()
 					msg.delete();
 					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
-					msg.channel.send({
-						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
-					});
-					const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(get_unit_link(matches['bestMatch']['target'])[0]);
-					msg.channel.send(embed)
+					msg.channel.send("** Guia para " + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
+					msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`]});
+					msg.channel.send(" Veterancia");
+					msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_vet.png`]});
+					msg.channel.send(" Doutrinas");
+					msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_doc.png`]});
+
+
+
+
 				} else {
 					delete_all_expect_pin()
 					msg.delete();
