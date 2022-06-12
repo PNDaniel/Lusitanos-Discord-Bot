@@ -134,8 +134,8 @@ client.on('message', async msg => {
 					//msg.channel.send({
 				//		files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
 			//		});
-			var a = await Promise.all([get_unit_linkV3(matches['bestMatch']['target'])]);
-			console.log(a)	
+			get_unit_linkV3(matches['bestMatch']['target']);
+			
 
 				} else {
 					delete_all_expect_pin()
@@ -206,7 +206,7 @@ const [link_img, link_vet, link_doc] = await Promise.all([
 	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
   ]);
   console.log(3)
-  
+
 console.log(link_img.request.res.req._redirectable._currentUrl)
 }
 
