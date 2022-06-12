@@ -126,11 +126,9 @@ client.on('messageCreate', async msg => {
 					msg.delete();
 					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 					msg.channel.send("** Guia para " + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
-					msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`]});
-					msg.channel.send(" Veterancia",{files: [`${path}/${matches['bestMatch']['target']}_vet.png`]});
-					msg.channel.send(" Doutrinas",{files: [`${path}/${matches['bestMatch']['target']}_doc.png`]});
-
-
+					msg.channel.send({
+						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
+					});
 
 
 				} else {
