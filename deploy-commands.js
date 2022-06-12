@@ -5,6 +5,8 @@ const { clientId, guildId } = require('./config.json');
 
 const commands = [
 	new SlashCommandBuilder().setName('tropa').setDescription('Guia de veterancia e doutrinas para uma tropa\nUso:/tropa=iron reapers'),
+    new SlashCommandBuilder().setName('tropas').setDescription('Guia de veterancia e doutrinas para uma tropa\n    Uso:/tropas=iron reapers'),
+
 	new SlashCommandBuilder().setName('request').setDescription('Envia pedido para alteração das veterancias ou doutrinas. Obrigatório ter um screenshot incluido.'),
 	new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
 ]

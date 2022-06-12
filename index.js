@@ -23,14 +23,13 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'tropa') {
-		console.log(interaction)
+	/*if (commandName === 'tropa') {
 		await interaction.reply("test");
 	} else if (commandName === 'request') {
 		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
 	} else if (commandName === 'user') {
 		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
-	}
+	}*/
 });
 
 
@@ -108,7 +107,7 @@ client.on('messageCreate', async msg => {
 
 
 
-	if (msg.content.includes("tropa") || msg.content.includes("/tropas=")) {
+	if (msg.content.includes("/tropa=") || msg.content.includes("/tropas=")) {
 		var unit = msg.content.toLowerCase().replace("/tropa=", "").replace(" ", "_").replace("/tropas=", "")
 		var files = fs.readdirSync(path)
 		var files_that_exist = [];
