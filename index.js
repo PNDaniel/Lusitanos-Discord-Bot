@@ -108,7 +108,7 @@ client.on('messageCreate', async msg => {
 
 
 
-	if (msg.content.includes("/tropa=") || msg.content.includes("/tropas=")) {
+	if (msg.content.includes("tropa") || msg.content.includes("/tropas=")) {
 		var unit = msg.content.toLowerCase().replace("/tropa=", "").replace(" ", "_").replace("/tropas=", "")
 		var files = fs.readdirSync(path)
 		var files_that_exist = [];
