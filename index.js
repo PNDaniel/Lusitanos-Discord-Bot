@@ -23,13 +23,13 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	/*if (commandName === 'tropa') {
-		await interaction.reply("test");
+	if (commandName === 'unit') {
+		await interaction.reply("Command has to be without spaces. \neg. \n /unit=iron reapers");
 	} else if (commandName === 'request') {
 		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
 	} else if (commandName === 'user') {
 		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
-	}*/
+	}
 });
 
 
@@ -107,8 +107,8 @@ client.on('messageCreate', async msg => {
 
 
 
-	if (msg.content.includes("/tropa=") || msg.content.includes("/tropas=")) {
-		var unit = msg.content.toLowerCase().replace("/tropa=", "").replace(" ", "_").replace("/tropas=", "")
+	if (msg.content.includes("/unit=")) {
+		var unit = msg.content.toLowerCase().replace("/unit=", "").replace(" ", "_").replace("/unit=", "")
 		var files = fs.readdirSync(path)
 		var files_that_exist = [];
 
@@ -125,7 +125,7 @@ client.on('messageCreate', async msg => {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
 					delete_all_expect_pin()
 					msg.delete();
-					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
+					msg.channel.send(`Message will be deleted :  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 					msg.channel.send("** Guia para " + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
 					msg.channel.send({
 						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
@@ -135,14 +135,14 @@ client.on('messageCreate', async msg => {
 				} else {
 					delete_all_expect_pin()
 					msg.delete();
-					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
+					msg.channel.send(`Message will be deleted :  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
 					msg.channel.send({
 						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`]
 					});
 				}
 			} else {
-				msg.channel.send("Não existe uma unidade com esse nome");
+				msg.channel.send("There isn't a unit with that name in the database.");
 			}
 		} catch (err) {
 			console.error(err)
