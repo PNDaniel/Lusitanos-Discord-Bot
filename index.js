@@ -206,6 +206,12 @@ async function get_image_url(id,type){
 		title = "Veterancy"
 		if(type==3)
 		title = "Doctrine"
+		if(type==1){
+		msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
+		var embed = new Discord.MessageEmbed().setImage(response.request.res.req._redirectable._currentUrl);
+					msg.channel.send(embed) 
+		}
+		else
 		var embed = new Discord.MessageEmbed().setTitle(title).setImage(response.request.res.req._redirectable._currentUrl);
 					msg.channel.send(embed) 
             });
