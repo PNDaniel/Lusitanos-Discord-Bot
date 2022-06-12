@@ -126,6 +126,9 @@ client.on('message', async msg => {
 			unit = unit.substring(1);
 		}
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
+		msg.channel.send(matches['bestMatch']['target']);
+
+
 		
 		
 		try {
