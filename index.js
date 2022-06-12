@@ -1,10 +1,10 @@
 // Discord.js bot
-const Discord = require('discord.js');
+const { Client, Intents } = require('discord.js');
 const axios = require('axios').default;
 const fs = require('fs')
 var stringSimilarity = require('string-similarity');
 
-const client = new Discord.Client();
+const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 //https://lh3.googleusercontent.com/d/ID    redirect google images
 
 const path = './images'
@@ -20,7 +20,7 @@ client.on('ready', () => {
 
 
 const { REST } = require('@discordjs/rest');
-const { Routes } = require('discord-api-types/v9');
+const { Routes } = require('discord-api-types');
 
 const commands = [{
   name: 'ping',
