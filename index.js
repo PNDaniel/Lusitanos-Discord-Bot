@@ -6,7 +6,7 @@ var stringSimilarity = require('string-similarity');
 const schedule = require("node-schedule");
 
 const client = new Discord.Client();
-
+//https://lh3.googleusercontent.com/d/ID    redirect google images
 client.interaction = {}; //Creating interaction object
 const DiscordButtons = require('discord-buttons-v13'); //Requiring Discord-BUttons module.
 const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-Pages module.
@@ -36,7 +36,7 @@ client.on('message', async msg => {
 		msg.delete();
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 			msg.channel.send({
-				files: ["https://drive.google.com/file/d/1J2KrObcw_pf7DwLAkXfgfBv-EaBeFMyU/view"]
+				files: ["https://lh3.googleusercontent.com/d/1Y3LLa9cwIuHFRuhEtJ4RpUXhL-4a1Jbv"]
 			});
 	}
 
