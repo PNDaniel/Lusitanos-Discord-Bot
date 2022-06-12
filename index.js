@@ -135,22 +135,27 @@ client.on('message', async msg => {
 					delete_all_expect_pin()
 					msg.delete();
 					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-
-					var data = await get_unit_linkV3(matches['bestMatch']['target']);					
-
+					var type=0;
+					if(files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png"))
+					type=2
+					else
+					type=1
+					var data = await get_unit_linkV3(matches['bestMatch']['target'],type);					
+					if(type>0)	{	
 					const Embed = new Discord.MessageEmbed()
 									.setColor('#0099ff')
 									.setTitle('Guide for '+"**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**")
 									.setDescription('Unit guide text can be implemented here!')
 									.setThumbnail(data[0])
 									.setImage(data[1])
+
 					msg.channel.send(Embed);
-					if(files.includes(matches['bestMatch']['target']+"_doc.png"))	{			
+					}
+					if(type>1)	{			
 					const Embed1 = new Discord.MessageEmbed().setColor('#0099ff').setImage(data[2])
 					msg.channel.send(Embed1);
-					}else{
-					msg.channel.send("There is no available veterancy for "+matches['bestMatch']['target']);
 					}
+
 
 
 		} catch (err) {
@@ -197,7 +202,7 @@ client.on('message', async msg => {
 		return names;
 	}
 
-async function get_unit_linkV3(name){
+async function get_unit_linkV3(name,type){
     var id_vet = null;
     var id_img = null;
     var id_doc = null;
@@ -217,13 +222,20 @@ async function get_unit_linkV3(name){
 
 	}
 });
-
+if(type==2){
 const  [link_img, link_vet, link_doc] =  await Promise.all([
     axios.get(`https://drive.google.com/uc?id=${id_img}`),
     axios.get(`https://drive.google.com/uc?id=${id_vet}`),
 	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
 	
   ])
+}else{
+	const  [link_img, link_vet, link_doc] =  await Promise.all([
+		axios.get(`https://drive.google.com/uc?id=${id_img}`),
+		axios.get(`https://drive.google.com/uc?id=${id_vet}`)
+	  ])
+
+}
 
   return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl,link_doc.request.res.req._redirectable._currentUrl]
 
