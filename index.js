@@ -39,21 +39,11 @@ client.on('message', async msg => {
 		axios.get("https://drive.google.com/uc?id=1e8j9GvtYrdf-qhNGJ-TAUi78YuPgi63A")
 		.then((response) => {
 			//image url : response.request.res.req._redirectable._currentUrl
-			//const embed = new Discord.MessageEmbed().setTitle('Attachments').setImage(response.request.res.req._redirectable._currentUrl);
-			//sg.channel.send(embed)
-
-			let embeds = [];
-			embeds.push(new Discord.RichEmbed()
-			.setTitle('Unit')
-			.setImage(response.request.res.req._redirectable._currentUrl)
-			.setTimestamp()
-			.setFooter('Pulled time:'));
-			 embeds.push(new Discord.RichEmbed()
-			.setTitle('Veterancy')
-			.setImage(response.request.res.req._redirectable._currentUrl)
-			.setTimestamp()
-			.setFooter('Pulled time:'));
-			msg.channel.send({embeds: embeds});
+			let embeded = []
+			const embed = new Discord.MessageEmbed().setTitle('Attachments').setImage(response.request.res.req._redirectable._currentUrl);
+			embeded.push(embed)
+			embeded.push(embed)
+			msg.channel.send(embeded)
 
 			//msg.channel.send({
 		//		files: [response.request.res.req._redirectable._currentUrl]
