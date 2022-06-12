@@ -16,7 +16,7 @@ const purge_messages = 10000;
 const ID_channel_to_delete = '984569178293940297';
 const ID_channel_request = '985278059001290753';
 
-
+ 
 client.on('ready' ,() => {
   console.log(`Logged in as ${client.user.tag}!`);
 });
