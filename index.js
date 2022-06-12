@@ -124,15 +124,18 @@ client.on('message', async msg => {
 			unit = unit.substring(1);
 		}
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
-
-		
 		try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
 					delete_all_expect_pin()
 					msg.delete();
-					get_unit_link(matches['bestMatch']['target'])
-					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)				
+					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
+					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
+					msg.channel.send({
+						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
+					});
+					const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(get_unit_link(matches['bestMatch']['target'])[0]);
+					msg.channel.send(embed)
 				} else {
 					delete_all_expect_pin()
 					msg.delete();
