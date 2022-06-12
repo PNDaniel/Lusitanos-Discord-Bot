@@ -126,8 +126,7 @@ client.on('message', async msg => {
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
 		console.log(get_unit_link(matches['bestMatch']['target']))
 
-		const [a] = await Promise.all([get_unit_link(matches['bestMatch']['target'])]);
-		console.log(a)
+		await Promise.all([get_unit_link(matches['bestMatch']['target'])]);
 		try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
@@ -138,12 +137,8 @@ client.on('message', async msg => {
 					//msg.channel.send({
 					//	files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
 					//});
-					var embed = new Discord.MessageEmbed().setTitle('Unit').setImage(get_unit_link(matches['bestMatch']['target'])[0]);
-					msg.channel.send(embed)
-					embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(get_unit_link(matches['bestMatch']['target'])[0]);
-					msg.channel.send(embed)
-					embed = new Discord.MessageEmbed().setTitle('Doctrines').setImage(get_unit_link(matches['bestMatch']['target'])[0]);
-					msg.channel.send(embed)
+					
+
 				} else {
 					delete_all_expect_pin()
 					msg.delete();
@@ -249,11 +244,19 @@ async function get_unit_link(name){
 });
 
 }
-async function get_image_url(id){
+async function get_image_url(id,type){
     return new Promise((resolve, reject) => {
      axios.get("https://drive.google.com/uc?id="+id).then((response) => {
         //console.log(response.request.res.req._redirectable._currentUrl)
-                resolve(link_img=response.request.res.req._redirectable._currentUrl)
+		var tittle = ""
+		if(type==1)
+		title = "Unit"
+		if(type==2)
+		title = "Veterancy"
+		if(type==3)
+		title = "Doctrine"
+		var embed = new Discord.MessageEmbed().setTitle(title).setImage(resolve(link_img=response.request.res.req._redirectable._currentUrl));
+					msg.channel.send(embed) 
             });
         });
 }
