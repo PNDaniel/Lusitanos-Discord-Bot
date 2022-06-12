@@ -12,7 +12,7 @@ const DiscordButtons = require('discord-buttons-v13'); //Requiring Discord-BUtto
 const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-Pages module.
 DiscordButtons(client);
 const path = './images'
-const purge_messages = 1000 * 60 * 10; //10 minutes
+const purge_messages = 1000 * 60 * 0.5; //10 minutes
 const ID_channel_to_delete = '984569178293940297';
 const ID_channel_request = '985278059001290753';
 
