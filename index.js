@@ -41,9 +41,9 @@ client.on('message', async msg => {
 			//image url : response.request.res.req._redirectable._currentUrl
 			const embed = new Discord.MessageEmbed().setTitle('Attachments').attachFiles([response.request.res.req._redirectable._currentUrl]);
 			msg.channel.send(embed)
-			msg.channel.send({
-				files: [response.request.res.req._redirectable._currentUrl]
-			});
+			//msg.channel.send({
+		//		files: [response.request.res.req._redirectable._currentUrl]
+	//		});
 
 		});
 
