@@ -138,7 +138,8 @@ client.on('message', async msg => {
 					type=1
 					msg.channel.send(type);
 
-					var data = await get_unit_linkV3(matches['bestMatch']['target'],type);					
+					var data = await get_unit_linkV3(matches['bestMatch']['target'],type);		
+					msg.channel(data.length)			
 					if(type>0)	{	
 					const Embed = new Discord.MessageEmbed()
 									.setColor('#0099ff')
@@ -146,7 +147,6 @@ client.on('message', async msg => {
 									.setDescription('Unit guide text can be implemented here!')
 									.setThumbnail(data[0])
 									.setImage(data[1])
-
 					msg.channel.send(Embed);
 					}
 					if(type>1)	{			
