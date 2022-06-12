@@ -4,8 +4,6 @@ const axios = require('axios').default;
 const fs = require('fs')
 var stringSimilarity = require('string-similarity');
 const schedule = require("node-schedule");
-const { MessageEmbed } = require('discord.js');
-
 
 const client = new Discord.Client();
 //https://lh3.googleusercontent.com/d/ID    redirect google images
@@ -115,49 +113,53 @@ client.on('message', async msg => {
 
 	if (msg.content.includes("/tropa=") || msg.content.includes("/tropas=")) {
 		var unit = msg.content.toLowerCase().replace("/tropa=", "").replace(" ", "_").replace("/tropas=", "")
-
-		var files = await get_units()
+		var files = fs.readdirSync(path)
 		var files_that_exist = [];
+
 		for (const file of files) {
-			if(!file.includes("_vet.png") || !file.includes("_doc.png"))
 			files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
+
 		}
 		while (unit.charAt(0) === '_') {
 			unit = unit.substring(1);
 		}
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
-		
+		console.log(get_unit_link(matches['bestMatch']['target'])[0])
 		try {
+			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
+				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
 					delete_all_expect_pin()
-					//msg.delete();
-
-					var type = 0
-					if(files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png") && files.includes(matches['bestMatch']['target']+"_img.png"))
-					type=2
-					else if(!files.includes(matches['bestMatch']['target']+"_doc.png") && files.includes(matches['bestMatch']['target']+"_vet.png") && files.includes(matches['bestMatch']['target']+"_img.png"))
-					type=1
-
-					if(type==0){
-						msg.channel.send(`Não existe dados suficientes para esta unidade<t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-					}
-					if(type>0)	{	
-					var data = await get_unit_linkV3(matches['bestMatch']['target'],type);		
 					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
+					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");		
 					const Embed = new Discord.MessageEmbed()
-									.setColor('#0099ff')
-									.setTitle('Guide for '+"**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**")
-									.setDescription('Unit guide text can be implemented here!')
-									.setThumbnail(data[0])
-									.setImage(data[1])
+					.setColor('#0099ff')
+					.setTitle('Guide for '+"**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**")
+					.setDescription('Unit guide text can be implemented here!')
+					.setThumbnail(`${path}/${matches['bestMatch']['target']}_img.png`)
+					.setImage(`${path}/${matches['bestMatch']['target']}_vet.png`)
 					msg.channel.send(Embed);
-					}
-					if(type>1)	{			
-					const Embed1 = new Discord.MessageEmbed().setColor('#0099ff').setImage(data[2])
+
+					const Embed1 = new Discord.MessageEmbed()
+					.setColor('#0099ff')
+					.setThumbnail(`${path}/${matches['bestMatch']['target']}_img.png`)
+					.setImage(`${path}/${matches['bestMatch']['target']}_doc.png`)
 					msg.channel.send(Embed1);
-					}
-
-
-
+				} else {
+					delete_all_expect_pin()
+					msg.delete();
+					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
+					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");		
+					const Embed = new Discord.MessageEmbed()
+					.setColor('#0099ff')
+					.setTitle('Guide for '+"**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**")
+					.setDescription('Unit guide text can be implemented here!')
+					.setThumbnail(`${path}/${matches['bestMatch']['target']}_img.png`)
+					.setImage(`${path}/${matches['bestMatch']['target']}_vet.png`)
+					msg.channel.send(Embed);
+				}
+			} else {
+				msg.channel.send("Não existe uma unidade com esse nome");
+			}
 		} catch (err) {
 			console.error(err)
 		}
@@ -185,106 +187,7 @@ client.on('message', async msg => {
 	}
 
 
-	//usage get_unit_link("iron_reapers")
-
-	async function get_units(){
-
-		var names=[]
-
-		const [get_ids] = await Promise.all([
-			axios.get(`https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3`),
-		  ]);
-
-		  get_ids.data.forEach(element => {
-			names.push(element['Image Name'])
-		});
-
-		return names;
-	}
-
-async function get_unit_linkV3(name,type){
-    var id_vet = null;
-    var id_img = null;
-    var id_doc = null;
-
-  const [get_ids] = await Promise.all([
-    axios.get(`https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3`),
-  ]);
-
-  get_ids.data.forEach(element => {
-	if(element['Image Name'].includes(name)){
-		if(element['Image Name'].includes('_img'))
-		id_img = element['Image ID'];
-		if(element['Image Name'].includes('_vet'))
-		id_vet = element['Image ID']
-		if(element['Image Name'].includes('_doc'))
-		id_doc = element['Image ID']
-
-	}
 });
-
-if(type==2){
-const  [link_img, link_vet, link_doc] =  await Promise.all([
-    axios.get(`https://drive.google.com/uc?id=${id_img}`),
-    axios.get(`https://drive.google.com/uc?id=${id_vet}`),
-	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
-	
-  ])
-
-  return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl,link_doc.request.res.req._redirectable._currentUrl]
-
-}else{
-	const  [link_img, link_vet] =  await Promise.all([
-		axios.get(`https://drive.google.com/uc?id=${id_img}`),
-		axios.get(`https://drive.google.com/uc?id=${id_vet}`)
-	  ])
-	  return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl]
-
-}
-
-
-}
-
-
-
-
-});
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
 
 async function get_google_sheets(nome) {
 	return new Promise((resolve, reject) => {
@@ -317,6 +220,46 @@ async function get_google_sheets(nome) {
 
 			});
 	})
+}
+
+async function get_unit_link(name){
+    var link_vet = null;
+    var link_img = null;
+    var link_doc = null;
+    return new Promise((resolve, reject) => {
+ axios.get("https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3")
+.then((response) => {
+	//image url : response.request.res.req._redirectable._currentUrl
+
+	//const embed = new Discord.MessageEmbed().setTitle('Veterancy').setImage(response.request.res.req._redirectable._currentUrl);
+	//msg.channel.send(embed)
+
+    response.data.forEach(element => {
+
+        if(element['Image Name'].includes(name)){
+            if(element['Image Name'].includes('_img'))
+            link_img = get_image_url(element['Image ID']);
+            if(element['Image Name'].includes('_vet'))
+            link_vet = get_image_url(element['Image ID']);
+            if(element['Image Name'].includes('_doc'))
+            link_doc = get_image_url(element['Image ID']);
+
+        }
+
+
+    });
+    resolve(link_img,link_vet,link_doc)
+});
+});
+
+}
+async function get_image_url(id){
+    return new Promise((resolve, reject) => {
+     axios.get("https://drive.google.com/uc?id="+id).then((response) => {
+        //console.log(response.request.res.req._redirectable._currentUrl)
+                resolve(link_img=response.request.res.req._redirectable._currentUrl)
+            });
+        });
 }
 
 client.login(process.env.TOKEN);
