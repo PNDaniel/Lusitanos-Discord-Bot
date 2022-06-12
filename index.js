@@ -145,6 +145,8 @@ client.on('message', async msg => {
 					if(files.includes(matches['bestMatch']['target']+"_doc.png"))	{			
 					const Embed1 = new Discord.MessageEmbed().setColor('#0099ff').setImage(data[2])
 					msg.channel.send(Embed1);
+					}else{
+					msg.channel.send("There is no available veterancy for "+matches['bestMatch']['target']);
 					}
 
 
