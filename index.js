@@ -201,9 +201,9 @@ async function get_unit_linkV3(name){
 });
 
 return  [link_img, link_vet, link_doc] =  await Promise.all([
-    axios.get(`https://drive.google.com/uc?id=${id_img}`),
-    axios.get(`https://drive.google.com/uc?id=${id_vet}`),
-	axios.get(`https://drive.google.com/uc?id=${id_doc}`)
+    axios.get(`https://drive.google.com/uc?id=${id_img}`).then(function (response) { return response.request.res.req._redirectable._currentUrl}),
+    axios.get(`https://drive.google.com/uc?id=${id_vet}`).then(function (response) { return response.request.res.req._redirectable._currentUrl}),
+	axios.get(`https://drive.google.com/uc?id=${id_doc}`).then(function (response) { return response.request.res.req._redirectable._currentUrl})
 	
   ]);
 
