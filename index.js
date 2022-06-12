@@ -139,7 +139,7 @@ client.on('message', async msg => {
 					while(data[0].length==0)
 					var data = await get_unit_linkV3(matches['bestMatch']['target']);
 
-					console.log(data[0])
+					console.log(data[0],data[1],data[2])
 
 					const Embed = new MessageEmbed()
 									.setColor('#0099ff')
