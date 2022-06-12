@@ -35,18 +35,16 @@ client.on('message', async msg => {
 	if (TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")) {
 		msg.delete();
 
-
-		  axios.get("https://drive.google.com/uc?id=1e8j9GvtYrdf-qhNGJ-TAUi78YuPgi63A")
-			.then((response) => {
-				console.log(response.request.res.responseUrl)
-				
-
-			});
-
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
+		axios.get("https://drive.google.com/uc?id=1e8j9GvtYrdf-qhNGJ-TAUi78YuPgi63A")
+		.then((response) => {
+			console.log(response.request.res.req._redirectable._currentUrl)
 			msg.channel.send({
-				files: ["https://static.wixstatic.com/media/ef5476_b14d489b0ef24761b19ebeb375ba7dc8~mv2.png/v1/fill/w_870,h_864,al_c,q_90,usm_0.66_1.00_0.01,enc_auto/TW%20Valley%20Fortress.png"]
+				files: [response.request.res.req._redirectable._currentUrl]
 			});
+
+		});
+
 	}
 
 	if (TWValleyFortress.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")) {
