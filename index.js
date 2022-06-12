@@ -187,7 +187,7 @@ async function get_unit_linkV3(name){
   const [get_ids] = await Promise.all([
     axios.get(`https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3`),
   ]);
-
+console.log(get_ids)
   get_ids.data.forEach(element => {
 	if(element['Image Name'].includes(name)){
 		if(element['Image Name'].includes('_img'))
