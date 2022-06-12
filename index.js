@@ -100,12 +100,13 @@ client.on('message', async msg => {
 			var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
 		  try {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`) ) {
-			delete_all_expect_pin()
 			if(fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)){	
+				delete_all_expect_pin()
 				msg.delete();
 				msg.channel.send(matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_"," "));
 				msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`,`${path}/${matches['bestMatch']['target']}_vet.png`,`${path}/${matches['bestMatch']['target']}_doc.png`]});
 			}else{
+				delete_all_expect_pin()
 				msg.delete();
 				msg.channel.send(matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_"," "));
 				msg.channel.send({files: [`${path}/${matches['bestMatch']['target']}_img.png`,`${path}/${matches['bestMatch']['target']}_vet.png`]});
@@ -124,8 +125,7 @@ client.on('message', async msg => {
 function delete_all_expect_pin()
 {
     setTimeout(async function()
-    {
-		const allMessages = await msg.channel.messages.fetch()
+    {   const allMessages = await msg.channel.messages.fetch()
 		const deletable = allMessages.filter(message => !message.pinned)
 		await msg.channel.bulkDelete(deletable, true)
     },purge_messages);
