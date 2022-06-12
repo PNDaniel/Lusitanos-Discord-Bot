@@ -130,10 +130,11 @@ client.on('message', async msg => {
 					delete_all_expect_pin()
 					msg.delete();
 					msg.channel.send(`Mensagem será apagada em:  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
-					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
-					msg.channel.send({
-						files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
-					});
+					//msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
+					//msg.channel.send({
+				//		files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
+			//		});
+			 	get_unit_link(matches['bestMatch']['target'])
 				} else {
 					delete_all_expect_pin()
 					msg.delete();
@@ -178,22 +179,25 @@ async function get_unit_link(name){
     var link_vet = null;
     var link_img = null;
     var link_doc = null;
-    return new Promise((resolve, reject) => {
  axios.get("https://opensheet.elk.sh/1oRAmZe-Msrw2sfE--hWHQEa-w9lPAo8933jFvaTXFLs/Folha3")
 .then((response) => {
     response.data.forEach(element => {
-
         if(element['Image Name'].includes(name)){
             if(element['Image Name'].includes('_img'))
-            get_image_url(element['Image ID'],1);
+			link_img = element['Image ID']
             if(element['Image Name'].includes('_vet'))
-			get_image_url(element['Image ID'],2);
+			link_vet = element['Image ID']
             if(element['Image Name'].includes('_doc'))
-			get_image_url(element['Image ID'],3);
-        }
+			link_doc = element['Image ID']
+
+			if(link_vet!=null && link_doc != null && link_img!= null){
+			var [a, b, c] = await Promise.all([ get_image_url(element['Image ID'],1),  get_image_url(element['Image ID'],2),  get_image_url(element['Image ID'],3)]);
+			console.log(a)	
+		}
+	}
     });
 });
-});
+
 
 }
 async function get_image_url(id,type){
