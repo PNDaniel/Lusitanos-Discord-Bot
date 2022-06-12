@@ -150,7 +150,7 @@ client.on('message', async msg => {
 									.setThumbnail(data[0])
 									.setImage(data[2])
 
-								channel.send({ embeds: [Embed, Embed1] });
+								msg.channel.send({ embeds: [Embed, Embed1] });
 			
 
 				} else {
