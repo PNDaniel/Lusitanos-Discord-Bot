@@ -219,7 +219,7 @@ async function get_unit_linkV3(name,type){
 
 	}
 });
-msg.channel.send(1)			
+msg.channel.send(1+":tyoe:" + type)			
 
 if(type==2){
 const  [link_img, link_vet, link_doc] =  await Promise.all([
