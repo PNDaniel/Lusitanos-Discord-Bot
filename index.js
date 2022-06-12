@@ -134,7 +134,7 @@ client.on('message', async msg => {
 					//msg.channel.send({
 				//		files: [`${path}/${matches['bestMatch']['target']}_img.png`, `${path}/${matches['bestMatch']['target']}_vet.png`, `${path}/${matches['bestMatch']['target']}_doc.png`]
 			//		});
-			var data = get_unit_linkV3(matches['bestMatch']['target']);
+			var data = await get_unit_linkV3(matches['bestMatch']['target']);
 			console.log(data)
 			
 
@@ -200,14 +200,14 @@ async function get_unit_linkV3(name){
 	}
 });
 
-return  [link_img, link_vet, link_doc] =  await Promise.all([
+const  [link_img, link_vet, link_doc] =  await Promise.all([
     axios.get(`https://drive.google.com/uc?id=${id_img}`).then(function (response) { return response.request.res.req._redirectable._currentUrl}),
     axios.get(`https://drive.google.com/uc?id=${id_vet}`).then(function (response) { return response.request.res.req._redirectable._currentUrl}),
 	axios.get(`https://drive.google.com/uc?id=${id_doc}`).then(function (response) { return response.request.res.req._redirectable._currentUrl})
 	
-  ]);
+  ])
 
-  //return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl,link_doc.request.res.req._redirectable._currentUrl]
+  return [link_img.request.res.req._redirectable._currentUrl,link_vet.request.res.req._redirectable._currentUrl,link_doc.request.res.req._redirectable._currentUrl]
 
 
 }
