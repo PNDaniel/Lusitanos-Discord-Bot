@@ -7,9 +7,7 @@ var stringSimilarity = require('string-similarity');
 const client = new Discord.Client();
 //https://lh3.googleusercontent.com/d/ID    redirect google images
 client.interaction = {}; //Creating interaction object
-const DiscordButtons = require('discord-buttons-v12'); //Requiring Discord-BUttons module.
 const ButtonPages = require('discord-button-pages'); //Requiring Discord-Button-Pages module.
-const {createPages} = require('discord-buttons-page');
 
 
 DiscordButtons(client);
@@ -39,18 +37,6 @@ client.on('message', async msg => {
 
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 {
-
-    let embed1 = new Discord.MessageEmbed()
-    .setTitle('Exemple 1');
-
-    let embed2 = new Discord.MessageEmbed()
-    .setTitle('Exemple 2');
-
-    const embeds = [embed1, embed2];
-    /*With Discord.js V12*/ const ButtonStyle = "red"; // Or green, blurple, gray.
-    const msg_delete = "!help for help command !"; // Défault : The embeds pages is closed !
-
-    createPages(bot, message, embeds, ButtonStyle, msg_delete);
 
 	const exampleEmbed = new Discord.MessageEmbed()
 	.setTitle('Some title')

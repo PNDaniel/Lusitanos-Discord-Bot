@@ -28,7 +28,6 @@
 	"dependencies": {
 	  "discord.js": "^12.2.0",
 	  "discord-button-pages":"^1.1.9",
-	  "discord-buttons-v12":"^1.0.6",
 	  "axios":"^0.27.2",
 	  "string-similarity":"^4.0.4",
 	  "node-schedule":"^2.1.0"
