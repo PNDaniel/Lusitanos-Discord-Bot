@@ -1,5 +1,5 @@
 // Discord.js bot
-const { Client, Intents } = require('discord.js');
+const { Discord, Client, Intents } = require('discord.js');
 const axios = require('axios').default;
 const fs = require('fs')
 var stringSimilarity = require('string-similarity');
