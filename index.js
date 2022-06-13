@@ -123,7 +123,6 @@ client.on('messageCreate', async msg => {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
 					delete_all_expect_pin()
-					write_rules()
 					msg.channel.send(`Message will be deleted :  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 					msg.channel.send("** Guia para " + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
 					msg.channel.send({
@@ -133,7 +132,6 @@ client.on('messageCreate', async msg => {
 
 				} else {
 					delete_all_expect_pin()
-					write_rules()
 					msg.channel.send(`Message will be deleted :  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
 					msg.channel.send({
@@ -172,15 +170,7 @@ client.on('messageCreate', async msg => {
 
 
 
-	async function write_rules(){
-		msg.channels.send("\t\t\t**Usage**")
-		msg.channels.send("If you want to check out the veterancies/doctrines of a unit use: (eg. iron reapers)")
-		msg.channels.send("\t\t***/unit=iron reapers***")
-		msg.channels.send("If you think that something is wrong and you would like to suggest a better veterancy line/doctrine use: ")
-		msg.channels.send("\t\t***/request= This sucks, bottom line is better \n'Attach screenshot'***")
-		msg.channels.send("Note: If you don't attach a screenshot of the new recomendation, the suggestion will be ignore by the bot.")
 
-	}
 
 });
 
