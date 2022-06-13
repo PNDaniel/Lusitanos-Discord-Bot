@@ -16,6 +16,7 @@ for (const file of files) {
 }
 
 let dictionary = Object.assign({}, ...files_that_exist.map((x) => ({[x.name]: x.value})));
+console.log(dictionary)
 
 
 const commands = [
