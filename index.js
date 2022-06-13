@@ -24,11 +24,9 @@ client.on('interactionCreate', async interaction => {
 	const { commandName } = interaction;
 
 	if (commandName === 'unit') {
-		await interaction.reply("Command has to be without spaces. \neg. \n /unit=iron reapers");
+		await interaction.reply("Command has to be without spaces. \n \n /unit=iron reapers");
 	} else if (commandName === 'request') {
-		await interaction.reply(`Server name: ${interaction.guild.name}\nTotal members: ${interaction.guild.memberCount}`);
-	} else if (commandName === 'user') {
-		await interaction.reply(`Your tag: ${interaction.user.tag}\nYour id: ${interaction.user.id}`);
+		await interaction.reply("Command has to include a screenshot. \n Confirmation message will be send as a private message.");
 	}
 });
 
