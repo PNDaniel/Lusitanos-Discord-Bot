@@ -2,7 +2,7 @@ const { SlashCommandBuilder } = require('@discordjs/builders');
 const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { clientId, guildId } = require('./config.json');
-
+const fs = require('fs')
 
 var files = fs.readdirSync(path)
 var files_that_exist = {};
