@@ -90,6 +90,7 @@ client.on('messageCreate', async msg => {
 	}
 
 	else if (msg.content.includes("/request=")) {
+		client.channels.cache.get(ID_channel_request).send(msg.author.username + " :\n\n\n" + msg.content.replace("/request=", ""));
 		msg.attachments.forEach(attachment => {
 			const ImageLink = attachment.proxyURL;
 			msg.delete();
@@ -97,7 +98,6 @@ client.on('messageCreate', async msg => {
 			msg.author.send({
 				files: [ImageLink]
 			})
-			client.channels.cache.get(ID_channel_request).send(msg.author.username + " :\n\n\n" + msg.content.replace("/request=", ""));
 			client.channels.cache.get(ID_channel_request).send({
 				files: [ImageLink]
 			});
