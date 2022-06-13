@@ -10,7 +10,7 @@ var files_that_exist = [];
 for (const file of files) {
 	//files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
 	files_that_exist.push({
-		key:   file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", "").replace("_",""),
+		name:   file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", "").replace("_",""),
 		value: file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", "").replace("_","")
 	});
 }
