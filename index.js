@@ -124,6 +124,7 @@ client.on('messageCreate', async msg => {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
 					delete_all_expect_pin()
 					msg.delete();
+					write_rules()
 					msg.channel.send(`Message will be deleted :  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 					msg.channel.send("** Guia para " + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
 					msg.channel.send({
@@ -170,6 +171,13 @@ client.on('messageCreate', async msg => {
 	}
 
 
+
+
+	async function write_rules(){
+		await client.channels.send("ola")
+
+	}
+
 });
 
 async function get_google_sheets(nome) {
@@ -204,6 +212,8 @@ async function get_google_sheets(nome) {
 			});
 	})
 }
+
+
 
 
 
