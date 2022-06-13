@@ -4,13 +4,12 @@ const axios = require('axios').default;
 const fs = require('fs')
 var stringSimilarity = require('string-similarity');
 require('./deploy-commands.js');
-const { ID_channel_to_delete, ID_channel_request } = require('./config.json');
+const { path, ID_channel_to_delete, ID_channel_request } = require('./config.json');
 
 
 const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_MESSAGES] });
 //https://lh3.googleusercontent.com/d/ID    redirect google images
 
-const path = './images'
 const purge_messages = 1000 * 60 * 10; //10 minutes
 
 
