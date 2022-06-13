@@ -10,13 +10,10 @@ var files_that_exist = [];
 for (const file of files) {
 	//files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
 	files_that_exist.push({
-		name:   file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", "").replace("_",""),
+		name:  file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", "").replace("_",""),
 		value: file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", "").replace("_","")
 	});
 }
-
-let dictionary = Object.assign({}, ...files_that_exist.map((x) => ({[x.name]: x.value})));
-console.log(dictionary)
 
 
 const commands = [
@@ -30,7 +27,7 @@ const commands = [
 		option.setName('unit')
 			.setDescription('The name of the unit')
 			.setRequired(true)
-			.addChoices(dictionary))
+			.addChoices(files_that_exist))
 
 ]
 	.map(command => command.toJSON());
