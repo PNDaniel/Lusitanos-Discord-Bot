@@ -5,7 +5,7 @@ const { path, clientId, guildId } = require('./config.json');
 const fs = require('fs')
 
 var files = fs.readdirSync(path)
-var files_that_exist = {};
+var files_that_exist = [];
 
 for (const file of files) {
 	files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
