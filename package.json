@@ -2,14 +2,14 @@
 	"name": "discord.lusitanos-discord-bot",
 	"version": "1.0.0",
 	"description": "Lusitanos Bot",
-	"main": "google_drive.js",
+	"main": "local_files.js",
 	"engines": {
 	  "node": "*",
 	  "npm": "*"
 	},
 	"scripts": {
 	  "test": "echo \"Error: no test specified\" && exit 1",
-	  "start": "node google_drive.js"
+	  "start": "node local_files.js"
 	},
 	"repository": {
 	  "type": "git",
