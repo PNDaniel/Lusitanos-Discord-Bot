@@ -8,8 +8,8 @@ var files = fs.readdirSync(path)
 var files_that_exist = [];
 
 for (const file of files) {
-	files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
-	dict.push({
+	//files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
+	files_that_exist.push({
 		key:   file.replace("vet.png", "").replace("img.png", "").replace("doc.png", "").replace("_",""),
 		value: file.replace("vet.png", "").replace("img.png", "").replace("doc.png", "").replace("_","")
 	});
