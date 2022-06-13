@@ -13,7 +13,6 @@ for (const file of files) {
 		key:   file.replace("vet.png", "").replace("img.png", "").replace("doc.png", "").replace("_",""),
 		value: file.replace("vet.png", "").replace("img.png", "").replace("doc.png", "").replace("_","")
 	});
-
 }
 
 
@@ -28,7 +27,7 @@ const commands = [
 		option.setName('unit')
 			.setDescription('The name of the unit')
 			.setRequired(true)
-			.addChoices(files_that_exist)
+			.addChoices(files_that_exist))
 
 ]
 	.map(command => command.toJSON());
