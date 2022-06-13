@@ -174,7 +174,7 @@ client.on('messageCreate', async msg => {
 
 
 	async function write_rules(){
-		client.channels.send("ola")
+		msg.channels.send("ola")
 
 	}
 
