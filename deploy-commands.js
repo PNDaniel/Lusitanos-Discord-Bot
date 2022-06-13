@@ -16,6 +16,18 @@ for (const file of files) {
 }
 
 
+const fss = require('fs/promises');
+
+async function example() {
+  try {
+    
+    await fss.writeFile('./test.txt',JSON.stringify(files_that_exist));
+  } catch (err) {
+    console.log(err);
+  }
+}
+example();
+
 const commands = [
 	//new SlashCommandBuilder().setName('unit').setDescription('Guide for specific unit with veterancy and doctrines        Usage:/unit=iron reapers'),
 	new SlashCommandBuilder().setName('request').setDescription('Request to change the veterancy or doctrines of a unit.    Screenshot much be included.'),
