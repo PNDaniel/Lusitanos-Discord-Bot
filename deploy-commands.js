@@ -10,8 +10,8 @@ var files_that_exist = [];
 for (const file of files) {
 	//files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
 	files_that_exist.push({
-		key:   file.replace("vet.png", "").replace("img.png", "").replace("doc.png", "").replace("_",""),
-		value: file.replace("vet.png", "").replace("img.png", "").replace("doc.png", "").replace("_","")
+		key:   file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", "").replace("_",""),
+		value: file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", "").replace("_","")
 	});
 }
 
@@ -27,7 +27,7 @@ const commands = [
 		option.setName('unit')
 			.setDescription('The name of the unit')
 			.setRequired(true)
-			.addChoices(files_that_exist))
+			.addChoices(Object.values(files_that_exist)))
 
 ]
 	.map(command => command.toJSON());
