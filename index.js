@@ -24,11 +24,11 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	if (commandName === 'unit') {
-		await interaction.reply("Command has to be without spaces. \n \n Usage: ```/unit=iron reapers```");
-	} else if (commandName === 'request') {
-		await interaction.reply("Command has to include a screenshot. \nConfirmation message will be send as a private message.\nUsage: ```/request= I don't like the top line, buttom is much better. 'Attached screenshot'```");
-	}
+	//if (commandName === 'unit') {
+		//await interaction.reply("Command has to be without spaces. \n \n Usage: ```/unit=iron reapers```");
+	//if (commandName === 'request') {
+//		await interaction.reply("Command has to include a screenshot. \nConfirmation message will be send as a private message.\nUsage: ```/request= I don't like the top line, buttom is much better. 'Attached screenshot'```");
+//	}
 });
 
 
