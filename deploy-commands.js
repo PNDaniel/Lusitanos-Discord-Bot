@@ -8,12 +8,17 @@ const commands = [
 	new SlashCommandBuilder().setName('request').setDescription('Request to change the veterancy or doctrines of a unit.    Screenshot much be included.'),
 	new SlashCommandBuilder().setName('activity').setDescription('Get your presence in TW'),
 	new SlashCommandBuilder()
-	.setName('unit')
-	.setDescription('Guide for specific unit with veterancy and doctrines        Usage:/unit=iron reapers')
+	.setName('gif')
+	.setDescription('Sends a random gif!')
 	.addStringOption(option =>
-		option.setName('Unit')
-			.setDescription('The unit you want to know information about')
-			.setRequired(true)),
+		option.setName('category')
+			.setDescription('The gif category')
+			.setRequired(true)
+			.addChoices(
+				{ name: 'Funny', value: 'gif_funny' },
+				{ name: 'Meme', value: 'gif_meme' },
+				{ name: 'Movie', value: 'gif_movie' },
+			))
 
 ]
 	.map(command => command.toJSON());
