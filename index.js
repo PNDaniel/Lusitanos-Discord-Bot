@@ -50,7 +50,7 @@ client.on('messageCreate', async msg => {
 
 	}
 
-	if (TWValleyFortress.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")) {
+	else if (TWValleyFortress.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")) {
 		msg.delete();
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 			msg.channel.send({
@@ -58,7 +58,7 @@ client.on('messageCreate', async msg => {
 			});
 	}
 
-	if (TWVillage3.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")) {
+	else if (TWVillage3.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/", "")) && msg.content.includes("/")) {
 		msg.delete();
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 			msg.channel.send({
@@ -66,30 +66,30 @@ client.on('messageCreate', async msg => {
 			});
 	}
 
-	if (TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/equal=", "")) && msg.content.includes("/equal=")) {
+	else if (TWCity1.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/equal=", "")) && msg.content.includes("/equal=")) {
 		msg.delete();
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 			msg.channel.send("Kiralvfalva\n Gyoma\n Méhkerék\n Hadur Várus\n Óvárus\n Horka\n Hévíz \nFeheloval\n Rozsdáskaszát\n Hosvarosa\n Kisbér\n Tura\n Hatvan")
 	}
 
-	if (TWValleyFortress.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/equal=", "")) && msg.content.includes("/equal=")) {
+	else if (TWValleyFortress.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/equal=", "")) && msg.content.includes("/equal=")) {
 		msg.delete();
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 			msg.channel.send("Vaja \n Ratót Var")
 	}
 
-	if (TWVillage3.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/equal=", "")) && msg.content.includes("/equal=")) {
+	else if (TWVillage3.includes(msg.content.toLowerCase().normalize("NFD").replace(/\p{Diacritic}/gu, "").replace("/equal=", "")) && msg.content.includes("/equal=")) {
 		msg.delete();
 		if (msg.member.roles.cache.some(role => role.name === 'Conselho'))
 			msg.channel.send("Ruda\nSovica\nCsorna\nDélrétek\nTavasz\nBejárat\nKistemplom\nVaseke")
 	}
-	if (msg.content.includes("/player=")) {
+	else if (msg.content.includes("/player=")) {
 		msg.delete();
 		const [a] = await Promise.all([get_google_sheets(msg.content.replace("/player=", ""))]);
 		msg.channel.send(a)
 	}
 
-	if (msg.content.includes("/request=")) {
+	else if (msg.content.includes("/request=")) {
 		msg.attachments.forEach(attachment => {
 			const ImageLink = attachment.proxyURL;
 			msg.delete();
@@ -106,7 +106,7 @@ client.on('messageCreate', async msg => {
 
 
 
-	if (msg.content.includes("/unit=")) {
+	else if (msg.content.includes("/unit=")) {
 		var unit = msg.content.toLowerCase().replace("/unit=", "").replace(" ", "_").replace("/unit=", "")
 		var files = fs.readdirSync(path)
 		var files_that_exist = [];
@@ -144,6 +144,10 @@ client.on('messageCreate', async msg => {
 		} catch (err) {
 			console.error(err)
 		}
+	}
+	else{
+		//purge everything, only commands are allowed
+		delete_all_expect_pin()
 	}
 
 
