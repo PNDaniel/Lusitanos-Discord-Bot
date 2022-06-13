@@ -11,7 +11,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 //https://lh3.googleusercontent.com/d/ID    redirect google images
 
 const path = './images'
-const purge_messages = 1000 * 60 * 0.1; //10 minutes
+const purge_messages = 1000 * 60 * 10; //10 minutes
 
 
 
@@ -107,6 +107,7 @@ client.on('messageCreate', async msg => {
 
 
 	else if (msg.content.includes("/unit=")) {
+		try {
 		var unit = msg.content.toLowerCase().replace("/unit=", "").replace(" ", "_").replace("/unit=", "")
 		var files = fs.readdirSync(path)
 		var files_that_exist = [];
@@ -119,7 +120,7 @@ client.on('messageCreate', async msg => {
 			unit = unit.substring(1);
 		}
 		var matches = stringSimilarity.findBestMatch(unit, files_that_exist);
-		try {
+		
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
 					delete_all_expect_pin()
