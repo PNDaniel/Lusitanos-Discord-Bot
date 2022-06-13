@@ -174,7 +174,12 @@ client.on('messageCreate', async msg => {
 
 
 	async function write_rules(){
-		msg.channels.send("ola")
+		msg.channels.send("\t\t\t**Usage**")
+		msg.channels.send("If you want to check out the veterancies/doctrines of a unit use: (eg. iron reapers)")
+		msg.channels.send("\t\t***/unit=iron reapers***")
+		msg.channels.send("If you think that something is wrong and you would like to suggest a better veterancy line/doctrine use: ")
+		msg.channels.send("\t\t***/request= This sucks, bottom line is better \n'Attach screenshot'***")
+		msg.channels.send("Note: If you don't attach a screenshot of the new recomendation, the suggestion will be ignore by the bot.")
 
 	}
 
