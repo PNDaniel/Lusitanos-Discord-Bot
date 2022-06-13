@@ -123,7 +123,6 @@ client.on('messageCreate', async msg => {
 			if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_img.png`) && fs.existsSync(`${path}/${matches['bestMatch']['target']}_vet.png`)) {
 				if (fs.existsSync(`${path}/${matches['bestMatch']['target']}_doc.png`)) {
 					delete_all_expect_pin()
-					msg.delete();
 					write_rules()
 					msg.channel.send(`Message will be deleted :  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 					msg.channel.send("** Guia para " + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
@@ -134,7 +133,7 @@ client.on('messageCreate', async msg => {
 
 				} else {
 					delete_all_expect_pin()
-					msg.delete();
+					write_rules()
 					msg.channel.send(`Message will be deleted :  <t:${Math.floor(Date.now()/1000)+ purge_messages/1000}:R>`)
 					msg.channel.send("**" + matches['bestMatch']['target'].charAt(0).toUpperCase() + matches['bestMatch']['target'].slice(1).replace("_", " ") + "**");
 					msg.channel.send({
