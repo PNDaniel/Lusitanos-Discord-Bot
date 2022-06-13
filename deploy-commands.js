@@ -4,8 +4,8 @@ const { Routes } = require('discord-api-types/v9');
 const { clientId, guildId } = require('./config.json');
 
 const commands = [
-	new SlashCommandBuilder().setName('unit').setDescription('Guide for specific unit with veterancy and doctrines\nUso:/unit=iron reapers'),
-	new SlashCommandBuilder().setName('request').setDescription('Request to change the veterancy or doctrines of a unit. Screenshot much be included.'),
+	new SlashCommandBuilder().setName('unit').setDescription('Guide for specific unit with veterancy and doctrines        Usage:/unit=iron reapers'),
+	new SlashCommandBuilder().setName('request').setDescription('Request to change the veterancy or doctrines of a unit.    Screenshot much be included.'),
 	new SlashCommandBuilder().setName('user').setDescription('Replies with user info!'),
     new SlashCommandBuilder()
 	.setName('info')
