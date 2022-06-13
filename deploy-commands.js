@@ -15,6 +15,8 @@ for (const file of files) {
 	});
 }
 
+let dictionary = Object.assign({}, ...files_that_exist.map((x) => ({[x.name]: x.value})));
+
 
 const commands = [
 	//new SlashCommandBuilder().setName('unit').setDescription('Guide for specific unit with veterancy and doctrines        Usage:/unit=iron reapers'),
@@ -27,7 +29,7 @@ const commands = [
 		option.setName('unit')
 			.setDescription('The name of the unit')
 			.setRequired(true)
-			.addChoices(Object.values(files_that_exist)))
+			.addChoices(Object.values(dictionary)))
 
 ]
 	.map(command => command.toJSON());
