@@ -29,7 +29,7 @@ const commands = [
 		option.setName('unit')
 			.setDescription('The name of the unit')
 			.setRequired(true)
-			.addChoices(dictionary))
+			.addChoices(JSON.stringify(dictionary))
 
 ]
 	.map(command => command.toJSON());
