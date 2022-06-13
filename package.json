@@ -2,7 +2,7 @@
 	"name": "discord.lusitanos-discord-bot",
 	"version": "1.0.0",
 	"description": "Lusitanos Bot",
-	"main": "index.js",
+	"main": "google_drive.js",
 	"engines": {
 	  "node": "*",
 	  "npm": "*"
