@@ -24,9 +24,9 @@ client.on('interactionCreate', async interaction => {
 
 	const { commandName } = interaction;
 
-	//if (commandName === 'unit') {
-		//await interaction.reply("Command has to be without spaces. \n \n Usage: ```/unit=iron reapers```");
-	//if (commandName === 'request') {
+	if (commandName === 'activity') {
+	await interaction.reply();
+	}	//if (commandName === 'request') {
 //		await interaction.reply("Command has to include a screenshot. \nConfirmation message will be send as a private message.\nUsage: ```/request= I don't like the top line, buttom is much better. 'Attached screenshot'```");
 //	}
 });
@@ -177,7 +177,7 @@ client.on('messageCreate', async msg => {
 });
 
 async function get_google_sheets(nome) {
-	return new Promise((resolve, reject) => {
+	return new Promise((resolve) => {
 		var currentDate = new Date();
 		var timestamp = currentDate.getTime();
 		axios.get("https://opensheet.elk.sh/1uUu5epwHjGf2ykQlHD4QfPhU-RS0FfYsgrFiMddXxlk/Presen%C3%A7as%20S%20XII?" + timestamp)
