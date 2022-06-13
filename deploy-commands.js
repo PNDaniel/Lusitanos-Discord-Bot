@@ -3,22 +3,32 @@ const { REST } = require('@discordjs/rest');
 const { Routes } = require('discord-api-types/v9');
 const { clientId, guildId } = require('./config.json');
 
+
+var files = fs.readdirSync(path)
+var files_that_exist = {};
+
+for (const file of files) {
+	files_that_exist.push(file.replace("_vet.png", "").replace("_img.png", "").replace("_doc.png", ""))
+	dict.push({
+		key:   file.replace("vet.png", "").replace("img.png", "").replace("doc.png", "").replace("_",""),
+		value: file.replace("vet.png", "").replace("img.png", "").replace("doc.png", "").replace("_","")
+	});
+
+}
+
+
 const commands = [
 	//new SlashCommandBuilder().setName('unit').setDescription('Guide for specific unit with veterancy and doctrines        Usage:/unit=iron reapers'),
 	new SlashCommandBuilder().setName('request').setDescription('Request to change the veterancy or doctrines of a unit.    Screenshot much be included.'),
 	new SlashCommandBuilder().setName('activity').setDescription('Get your presence in TW'),
 	new SlashCommandBuilder()
-	.setName('gif')
-	.setDescription('Sends a random gif!')
+	.setName('unit')
+	.setDescription('Guide for specific unit with veterancy and doctrines        Usage:/unit iron reapers')
 	.addStringOption(option =>
-		option.setName('category')
-			.setDescription('The gif category')
+		option.setName('unit')
+			.setDescription('The name of the unit')
 			.setRequired(true)
-			.addChoices(
-				{ name: 'Funny', value: 'gif_funny' },
-				{ name: 'Meme', value: 'gif_meme' },
-				{ name: 'Movie', value: 'gif_movie' },
-			))
+			.addChoices(files_that_exist)
 
 ]
 	.map(command => command.toJSON());
