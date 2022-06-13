@@ -139,7 +139,7 @@ client.on('messageCreate', async msg => {
 					});
 				}
 			} else {
-				msg.channel.send("There isn't a unit with that name in the database.");
+				msg.channel.send("There isn't an unit with that name in the database.");
 			}
 		} catch (err) {
 			console.error(err)
@@ -166,10 +166,6 @@ client.on('messageCreate', async msg => {
 			}
 		}, purge_messages);
 	}
-
-
-
-
 
 
 });
