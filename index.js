@@ -157,7 +157,8 @@ client.on('messageCreate', async msg => {
 
 		const allMessages = await client.channels.cache.get(ID_channel_to_delete).messages.fetch()
 		const deletable = allMessages.filter(message => !message.pinned)
-		await client.channels.cache.get(ID_channel_to_delete).bulkDelete(deletable, true)
+		const deletable_bot = deletable.filter(author => !author.bot)
+		await client.channels.cache.get(ID_channel_to_delete).bulkDelete(deletable_bot, true)
 
 		setTimeout(async function() {
 			const allMessages = await client.channels.cache.get(ID_channel_to_delete).messages.fetch()
@@ -166,7 +167,8 @@ client.on('messageCreate', async msg => {
 			while (allMessages.filter(message => !message.pinned)) {
 				const allMessages = await client.channels.cache.get(ID_channel_to_delete).messages.fetch()
 				const deletable = allMessages.filter(message => !message.pinned)
-				await client.channels.cache.get(ID_channel_to_delete).bulkDelete(deletable, true)
+				const deletable_bot = deletable.filter(author => !author.bot)
+				await client.channels.cache.get(ID_channel_to_delete).bulkDelete(deletable_bot, true)
 			}
 		}, purge_messages);
 	}
