@@ -11,7 +11,7 @@ const client = new Client({ intents: [Intents.FLAGS.GUILDS, Intents.FLAGS.GUILD_
 //https://lh3.googleusercontent.com/d/ID    redirect google images
 
 const path = './images'
-const purge_messages = 1000 * 60 * 10; //10 minutes
+const purge_messages = 1000 * 60 * 0.1; //10 minutes
 
 
 
